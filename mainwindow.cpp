@@ -9,6 +9,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->lineEditCINP->setValidator(new QIntValidator(0,99999999,this));
     ui->lineEditAGEP->setValidator(new QIntValidator(0,999,this));
     ui->lineEditSUPP->setValidator(new QIntValidator(0,99999999,this));
+    ui->lineEditCINP_2->setValidator(new QIntValidator(0,99999999,this));
+    ui->lineEditAGEP_2->setValidator(new QIntValidator(0,999,this));
+    QRegExp rxnom("\\b[a-zA-Z]{2,20}\\b");
+        QRegExpValidator *valinom =new QRegExpValidator(rxnom,this);
+        ui->lineEditNOMP->setValidator(valinom);
+        ui->lineEditNOMP_2->setValidator(valinom);
+        ui->lineEditPRENOMP->setValidator(valinom);
+        ui->lineEditPRENOMP_2->setValidator(valinom);
     ui->tableView->setModel(P.afficher());
 }
 
@@ -60,5 +68,33 @@ void MainWindow::on_pushButtonSUPP_clicked()
         else
     {
             QMessageBox::critical(nullptr,QObject::tr("NOT OK"), QObject::tr("suppression non effectué\n""Click Cancel to exit."), QMessageBox::Cancel);
+    }
+}
+
+void MainWindow::on_pushButtonModifier_clicked()
+{
+    QString CINP=ui->lineEditCINP_2->text();
+    QString NOMP=ui->lineEditNOMP_2->text();
+    QString PRENOMP=ui->lineEditPRENOMP_2->text();
+    QDate DATE_NAISSANCEP=ui->dateEdit_2->date();
+    QString ADRESSEP=ui->lineEditADRESSEP_2->text();
+    QString ETATP=ui->lineEditETATP_2->text();
+    QString AGEP=ui->lineEditAGEP_2->text();
+
+    Patient P2(CINP,NOMP,PRENOMP,DATE_NAISSANCEP,ADRESSEP,ETATP,AGEP);
+    bool test=P2.update();
+
+    if(test)
+    {
+     QMessageBox::information(nullptr, QObject::tr("OK"),
+            QObject::tr("Modification effectué\n"
+                        "Click Cancel to exit."), QMessageBox::Cancel);
+    ui->tableView->setModel(P.afficher());
+    }
+    else
+    {
+     QMessageBox::critical(nullptr, QObject::tr("Not OK"),
+             QObject::tr("Modification erronée\n"
+                         "Click Cancel to exit."), QMessageBox::Cancel);
     }
 }

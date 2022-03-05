@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QApplication>
 #include <QtDebug>
+#include <QRegExpValidator>
 #include "patient.h"
 namespace Ui {
 class MainWindow;
@@ -24,6 +25,8 @@ private slots:
     void on_pushButtonAjouter_clicked();
 
     void on_pushButtonSUPP_clicked();
+
+    void on_pushButtonModifier_clicked();
 
 private:
     Ui::MainWindow *ui;

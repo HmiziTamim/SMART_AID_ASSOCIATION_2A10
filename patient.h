@@ -28,6 +28,7 @@ public:
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(QString);
+    bool update();
     private:
     QString CINP;
     QString NOMP;

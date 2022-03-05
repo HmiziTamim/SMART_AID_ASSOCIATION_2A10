@@ -55,3 +55,17 @@ bool Patient::supprimer(QString CINP){
     query.bindValue(":CINP",CINP);
     return  query.exec();
 }
+bool Patient::update()
+{
+    QSqlQuery  query;
+query.prepare("UPDATE Patient SET CINP=:CINP ,NOMP=:NOMP, PRENOMP=:PRENOMP, DATE_NAISSANCEP=:DATE_NAISSANCEP, ADRESSEP=:ADRESSEP, ETATP=:ETATP, AGEP=:AGEP  where CINP=:CINP");
+query.bindValue(":CINP", CINP);
+query.bindValue(":NOMP", NOMP);
+query.bindValue(":PRENOMP", PRENOMP);
+query.bindValue(":DATE_NAISSANCEP", DATE_NAISSANCEP);
+query.bindValue(":ADRESSEP",ADRESSEP);
+query.bindValue(":ETATP", ETATP);
+query.bindValue(":AGEP", AGEP);
+
+return query.exec();
+}
