@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>524079c5b4cafc69d4ecbdf18beb9ed2.jpg</file>
+        <file>84380.png</file>
+        <file>add.png</file>
+        <file>default-profile-icon-24.jpg</file>
+        <file>delete.png</file>
+        <file>eee.png</file>
+        <file>eee7.png</file>
+        <file>free-search-icon-3076-thumb.png</file>
+        <file>inf.png</file>
+        <file>istockphoto-587220352-170667a.jpg</file>
+        <file>istockphoto-1132593892-612x612.jpg</file>
+        <file>istockphoto-1157432768-612x612.jpg</file>
+        <file>log.png</file>
+        <file>logo2.png</file>
+        <file>q.png</file>
+    </qresource>
+</RCC>
