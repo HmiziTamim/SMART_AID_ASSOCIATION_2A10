@@ -22,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) : //Constructeur de la classe mainwindow
     ui->la_taille->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
     ui->le_nom->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{7}")));
     ui->le_genre->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
-    ui->la_couleur->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
 
     ui->le_id_supp->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
 
@@ -32,7 +31,6 @@ MainWindow::MainWindow(QWidget *parent) : //Constructeur de la classe mainwindow
     ui->taille_mod->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
     ui->nom_mod->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{7}")));
     ui->genre_mod->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
-    ui->couleur_mod->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
 
 
 
@@ -40,7 +38,6 @@ MainWindow::MainWindow(QWidget *parent) : //Constructeur de la classe mainwindow
     ui->le_id->setPlaceholderText("Entrez le id...");
     ui->le_nom->setPlaceholderText("Entrez le nom...");
     ui->le_genre->setPlaceholderText("Entrez le genre...");
-    ui->la_couleur->setPlaceholderText("Entrez la couleur...");
     ui->la_qte->setPlaceholderText("Entrez la quantite...");
     ui->le_poids->setPlaceholderText("Entrez le poids...");
     ui->la_taille->setPlaceholderText("Entrez la taille...");
@@ -50,7 +47,6 @@ MainWindow::MainWindow(QWidget *parent) : //Constructeur de la classe mainwindow
     ui->id_mod->setPlaceholderText("Entrez le id...");
     ui->nom_mod->setPlaceholderText("Entrez le nom...");
     ui->genre_mod->setPlaceholderText("Entrez le genre...");
-    ui->couleur_mod->setPlaceholderText("Entrez la couleur...");
     ui->qte_mod->setPlaceholderText("Entrez la quantite...");
     ui->poids_mod->setPlaceholderText("Entrez le poids...");
     ui->taille_mod->setPlaceholderText("Entrez la taille...");
@@ -73,12 +69,11 @@ void MainWindow::on_pushButton_clicked()
     QString id=ui->le_id->text();
     QString nom=ui->le_nom->text();
     QString genre=ui->le_genre->text();
-    QString couleur=ui->la_couleur->text();
     int quantite=ui->la_qte->text().toInt();
     int poids=ui->le_poids->text().toInt();
     int taille=ui->la_taille->text().toInt();
     QDate datep= ui->la_date->date();
-    stock S(id,nom,quantite,couleur,poids,taille,genre,datep);
+    stock S(id,nom,quantite,poids,taille,genre,datep);
     bool test= S.ajouter();
     if(test)
     {
@@ -143,7 +138,6 @@ void MainWindow::on_pb_modifier_clicked()
             S.setqte(ui->qte_mod->text().toInt());
             S.setdate(ui->date_mod->date());
             S.setgenre(ui->genre_mod->text());
-            S.setcouleur(ui->couleur_mod->text());
             S.setpoids(ui->poids_mod->text().toInt());
             S.settaille(ui->taille_mod->text().toInt());
 
@@ -161,7 +155,6 @@ void MainWindow::on_pb_modifier_clicked()
                 ui->qte_mod->clear();
                 ui->poids_mod->clear();
                 ui->taille_mod->clear();
-                ui->couleur_mod->clear();
                 ui->date_mod->clear();
                 ui->genre_mod->clear();
 

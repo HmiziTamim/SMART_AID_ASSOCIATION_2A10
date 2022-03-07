@@ -11,7 +11,7 @@ class stock
 public:
     //constructeurs
     stock();
-    stock(QString,QString,int,QString,int,int,QString,QDate);
+    stock(QString,QString,int,int,int,QString,QDate);
 
 
 
@@ -22,7 +22,6 @@ public:
     QDate getdate();
     QString getgenre();
     int getpoids();
-    QString getcouleur();
     int gettaille();
 
     //setters
@@ -32,7 +31,6 @@ public:
     void setdate(QDate);//demande changement d'etats//modifier un attribut
     void setgenre(QString);
     void setpoids(int);
-    void setcouleur(QString);
     void settaille(int);
 
 
@@ -52,7 +50,7 @@ public:
 
 private:
     int quantite,poids,taille;
-    QString nom,genre,couleur,id;
+    QString nom,genre,id;
     QDate datep;
 };
 
