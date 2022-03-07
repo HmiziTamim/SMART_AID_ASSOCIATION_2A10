@@ -3,7 +3,7 @@
 #include "mainwindow.h"
 #include "stock.h"
 #include <QSqlQuery>
-#include <QIntValidator>
+#include <QIntValidator> //ensures a string contains a valid integer within a specified range
 #include <QSqlError>
 #include<QSystemTrayIcon>
 #include <QRegExp>

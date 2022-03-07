@@ -1,5 +1,6 @@
 #include "stock.h"
 #include <QSqlQuery>
+#include <QSqlQueryModel>
 #include <QtDebug>
 #include <QObject>
 stock::stock()

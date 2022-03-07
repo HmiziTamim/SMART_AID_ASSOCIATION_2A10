@@ -4,7 +4,7 @@
 #include "connection.h"
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication a(argc, argv); //manages the GUI application's control flow and main settings
     Connection c;
     bool test=c.createconnect(); //etablir la cnx
     MainWindow w; //Appel du constructeur
