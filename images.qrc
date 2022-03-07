@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>inf.png</file>
+        <file>istockphoto-587220352-170667a.jpg</file>
+        <file>istockphoto-1132593892-612x612.jpg</file>
+        <file>istockphoto-1157432768-612x612.jpg</file>
+        <file>log.png</file>
+        <file>logo2.png</file>
+        <file>524079c5b4cafc69d4ecbdf18beb9ed2.jpg</file>
+    </qresource>
+</RCC>
