@@ -4,5 +4,6 @@
         <file>bbbb.png</file>
         <file>aa.jpg</file>
         <file>&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;&amp;.png</file>
+        <file>refresh.PNG</file>
     </qresource>
 </RCC>
