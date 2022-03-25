@@ -98,3 +98,151 @@ void MainWindow::on_pushButtonModifier_clicked()
                          "Click Cancel to exit."), QMessageBox::Cancel);
     }
 }
+
+void MainWindow::on_pb_triparid_clicked()
+{
+    Patient E ;
+        ui->tableView->setModel(E.trierpatient1());
+}
+
+void MainWindow::on_pb_triparnom_clicked()
+{
+    Patient E ;
+        ui->tableView->setModel(E.trierpatient2());
+}
+
+void MainWindow::on_pushButtonRECHERCHE_clicked()
+{
+    Patient E ;
+         QString rech =ui->lineEditRECHERCHE->text();
+         if (rech=="")
+
+             ui->tableView->setModel(E.afficher());
+         else
+             ui->tableView->setModel(E.recherche(rech));
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QString strStream;
+        strStream = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+            if (QFileInfo(strStream).suffix().isEmpty()) { strStream.append(".pdf"); }
+
+            QPrinter printer(QPrinter::PrinterResolution);
+            printer.setOutputFormat(QPrinter::PdfFormat);
+            printer.setPaperSize(QPrinter::A4);
+            printer.setOutputFileName(strStream);
+
+
+
+                  QTextStream out(&strStream);
+
+                  const int rowCount = ui->tableView->model()->rowCount();
+                  const int columnCount = ui->tableView->model()->columnCount();
+                  QString TT = QDateTime::currentDateTime().toString();
+                  out <<"<html>\n"
+                        "<head>\n"
+                         "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                      << "<title>PDF<title>\n "
+                      << "</head>\n"
+                      "<body bgcolor=#ffffff link=#5000A0>\n"
+                         "<h1 style=\"text-align: center;\"><strong> "+TT+"</strong></h1>"
+                      "<h1 style=\"text-align: center;\"><strong> ******LISTE DES PATIENT ****** </strong></h1>"
+
+                      "<table style=\"text-align: center; font-size: 10px;\" border=1>\n "
+                        "</br> </br>";
+                  // headers
+                  out << "<thead><tr bgcolor=#d6e5ff>";
+                  for (int column = 0; column < columnCount; column++)
+                      if (!ui->tableView->isColumnHidden(column))
+                          out << QString("<th>%1</th>").arg(ui->tableView->model()->headerData(column, Qt::Horizontal).toString());
+                  out << "</tr></thead>\n";
+
+                  // data table
+                  for (int row = 0; row < rowCount; row++) {
+                      out << "<tr>";
+                      for (int column = 0; column < columnCount; column++) {
+                          if (!ui->tableView->isColumnHidden(column)) {
+                              QString data =ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString().simplified();
+                              out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                          }
+                      }
+                      out << "</tr>\n";
+                  }
+                  out <<  "</table>\n"
+                      "</body>\n"
+                      "</html>\n";
+
+                  QTextDocument document;
+                  document.setHtml(strStream);
+                  document.print(&printer);
+}
+
+void MainWindow::on_pushButtonSTAT_clicked()
+{
+    QString h="Oui";
+    QString f="Non";
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from PATIENT where AGEP >= 18");
+    float dispo1=model->rowCount();
+
+    model->setQuery("select * from PATIENT where AGEP <18");
+    float dispo=model->rowCount();
+
+    float total=dispo1+dispo;
+        QString a=QString("majeur . " +QString::number((dispo1*100)/total,'f',2)+"%" );
+        QString b=QString("mineur .  "+QString::number((dispo*100)/total,'f',2)+"%" );
+        QPieSeries *series = new QPieSeries();
+        series->append(a,dispo1);
+        series->append(b,dispo);
+    if (dispo1!=0)
+    {QPieSlice *slice = series->slices().at(0);
+        slice->setLabelVisible();
+        slice->setPen(QPen());}
+    if ( dispo!=0)
+    {
+        QPieSlice *slice1 = series->slices().at(1);
+        slice1->setLabelVisible();
+    }
+
+    QChart *chart = new QChart();
+    // Add data to chart with title and hide legend
+    chart->addSeries(series);
+    chart->setTitle("age des patient :Nb patient: "+ QString::number(total));
+    chart->legend()->hide();
+    // Used to display the chart
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartView->resize(1000,500);
+    chartView->show();
+}
+
+void MainWindow::on_pushButtonRECHERCHE_2_clicked()
+{
+    Patient E ;
+         QString rech =ui->lineEditRECHERCHE_2->text();
+         if (rech=="")
+
+             ui->tableView->setModel(E.afficher());
+         else
+             ui->tableView->setModel(E.recherche3(rech));
+}
+
+void MainWindow::on_pushButtonRECHERCHE_3_clicked()
+{
+    Patient E ;
+         QString rech =ui->lineEditRECHERCHE_3->text();
+         if (rech=="")
+
+             ui->tableView->setModel(E.afficher());
+         else
+             ui->tableView->setModel(E.recherche2(rech));
+}
+
+
+
+void MainWindow::on_pb_triparprenom_clicked()
+{
+    Patient E ;
+        ui->tableView->setModel(E.trierpatient3());
+}

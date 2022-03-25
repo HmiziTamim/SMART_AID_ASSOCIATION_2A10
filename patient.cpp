@@ -69,3 +69,74 @@ query.bindValue(":AGEP", AGEP);
 
 return query.exec();
 }
+QSqlQueryModel *Patient::trierpatient1()
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PATIENT ORDER BY NOMP ") ;
+    return  model ;
+}
+QSqlQueryModel *Patient::trierpatient2()
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PATIENT ORDER BY CINP") ;
+    return  model ;
+}
+QSqlQueryModel *Patient::trierpatient3()
+{
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PATIENT ORDER BY PRENOMP") ;
+    return  model ;
+}
+
+QSqlQueryModel* Patient::recherche(QString NOMP)
+
+ {
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PATIENT WHERE(NOMP LIKE '%"+NOMP+"%')");
+    return  model ;
+
+}
+QSqlQueryModel* Patient::recherche2(QString CINP){
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PATIENT WHERE(CINP = "+CINP+")");
+    return  model ;
+
+}
+QSqlQueryModel* Patient::recherche3(QString PRENOMP)
+ {
+
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery("SELECT * FROM PATIENT WHERE(PRENOMP LIKE '%"+PRENOMP+"%')");
+    return  model ;
+
+}
+void Patient::CREATION_PDF()
+{
+    QString fileName = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
+    if (QFileInfo(fileName).suffix().isEmpty()) { fileName.append(".pdf"); }
+
+    QPrinter printer(QPrinter::PrinterResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPaperSize(QPrinter::A4);
+    printer.setOutputFileName(fileName);
+
+    QTextDocument doc;
+    QSqlQuery q;
+    q.prepare("SELECT * FROM PATIENT ");
+    q.exec();
+    QString pdf="<br> <h1  style='color:blue'>LISTE DES Patients  <br></h1>\n <br> <table>  <tr>  <th>CINP </th> <th>NOMP </th> <th>PRENOMP  </th> <th>DATE_NAISSANCEP  </th><th>ADRESSEP  </th><th>ETATP  </th> <th>AGEP</th> </tr>" ;
+
+
+    while ( q.next()) {
+
+
+        pdf= pdf+ " <br> <tr> <td>"+ q.value(0).toInt()+" " + q.value(1).toString() +"</td>   <td>" +q.value(2).toString() +" <td>" +q.value(3).toString() +" <td>" +q.value(4).toString() +" <td>" +q.value(5).toString() +" "" " "</td> </td>" ;
+    }
+    doc.setHtml(pdf);
+    doc.setPageSize(printer.pageRect().size()); // This is necessary if you want to hide the page number
+    doc.print(&printer);
+
+
+}

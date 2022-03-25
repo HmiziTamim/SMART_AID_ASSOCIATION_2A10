@@ -5,6 +5,7 @@
 #include <QMainWindow>
 #include <QApplication>
 #include <QtDebug>
+#include <QDate>
 #include <QRegExpValidator>
 #include "patient.h"
 namespace Ui {
@@ -27,6 +28,24 @@ private slots:
     void on_pushButtonSUPP_clicked();
 
     void on_pushButtonModifier_clicked();
+
+    void on_pb_triparid_clicked();
+
+    void on_pb_triparnom_clicked();
+
+    void on_pushButtonRECHERCHE_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_pushButtonSTAT_clicked();
+
+    void on_pushButtonRECHERCHE_2_clicked();
+
+    void on_pushButtonRECHERCHE_3_clicked();
+
+
+
+    void on_pb_triparprenom_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -6,6 +6,12 @@
 #include <QtDebug>
 #include <QSqlQueryModel>
 #include <QObject>
+#include <QFileDialog>
+#include <QPrinter>
+#include <QTextDocument>
+#include <QPieSlice>
+#include <QPieSeries>
+#include <QtCharts>
 class Patient
 {
 public:
@@ -29,6 +35,14 @@ public:
     QSqlQueryModel* afficher();
     bool supprimer(QString);
     bool update();
+    QSqlQueryModel * trierpatient1();
+    QSqlQueryModel * trierpatient2();
+    QSqlQueryModel * trierpatient3();
+    QSqlQueryModel* recherche(QString NOMP);
+    QSqlQueryModel* recherche2(QString CINP);
+    QSqlQueryModel* recherche3(QString PRENOMP);
+
+    void CREATION_PDF();
     private:
     QString CINP;
     QString NOMP;
