@@ -28,6 +28,8 @@ public:
     QSqlQueryModel* recherche(QString nom);
     QSqlQueryModel * trierevenement1();
     QSqlQueryModel * trierevenement2();
+        void CREATION_PDF();
+        void statistique(QWidget * w);
 private:
     int id;
     QString nom,type,lieu;

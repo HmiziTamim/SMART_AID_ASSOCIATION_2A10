@@ -5,8 +5,10 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT       += printsupport
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += charts
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
 
 TARGET = Atelier_Connexion
 TEMPLATE = app
@@ -44,6 +46,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    images.qrc
+    images.qrc \
+    qml.qrc \
+    translation.qrc
 
 DISTFILES +=
+
+

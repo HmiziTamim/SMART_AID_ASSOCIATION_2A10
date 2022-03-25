@@ -31,6 +31,16 @@ private slots:
 
     void on_pb_triparid_clicked();
 
+    void on_pb_pdf_clicked();
+
+
+
+    void on_pushButton_5produit_clicked();
+
+    void on_tabWidget_currentChanged(int index);
+
+    void on_tabWidget_tabBarClicked(int index);
+
 private:
     Ui::MainWindow *ui;
     Evenement E ;
