@@ -24,6 +24,7 @@ public:
     int getpoids();
     int gettaille();
 
+
     //setters
     void setid(QString);
     void setnom(QString);
@@ -47,11 +48,16 @@ public:
     QSqlQueryModel * afficher_tri_descendant_Stock();
     QSqlQueryModel * recherche_nom(QString);
 
+    QSqlQueryModel *recherche_date(QDate);
 
 private:
     int quantite,poids,taille;
     QString nom,genre,id;
     QDate datep;
 };
+
+
+
+
 
 #endif // STOCK_H

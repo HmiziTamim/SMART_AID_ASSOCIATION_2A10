@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "stock.h"
+#include "statistique.h"
+#include "historique.h"
+#include "histosupp.h"
+#include "histomod.h"
+#include "qrcode.h"
 namespace Ui {
 class MainWindow;
 }
@@ -29,9 +34,20 @@ private slots:
 
     void on_recherche_Stock_clicked();
 
+    void on_Pdf_clicked();
+
+    void on_stat_clicked();
+
+    void on_qrCode_clicked();
+
 private:
     Ui::MainWindow *ui;
     stock S;  //ob+att
+     statistique *stat;
+     historique tm;
+     histosupp ts;
+     histomod hm;
+
 };
 
 #endif // MAINWINDOW_H

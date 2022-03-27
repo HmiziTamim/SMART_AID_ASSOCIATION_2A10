@@ -13,6 +13,7 @@ stock::stock()
     genre="";
    datep.toString("yyyy/dd/mm");
 }
+
 stock::stock(QString id,QString nom,int quantite,int poids,int taille,QString genre,QDate datep)
 {
     this->id=id;
@@ -24,6 +25,7 @@ stock::stock(QString id,QString nom,int quantite,int poids,int taille,QString ge
     this->taille=taille;
 
 }
+
 QString stock::getid(){return id;}
 QString stock::getnom(){return nom;}
 int stock::getqte(){return quantite;}
@@ -40,6 +42,8 @@ void stock::setpoids(int poids){this->poids=poids;}
 void stock::settaille(int taille){this->taille=taille;}
 
 
+
+
 bool stock::ajouter()
 {
 QString quantite_string = QString::number(quantite);
@@ -49,6 +53,7 @@ QSqlQuery query;
 
 //Prendra la requête en paramètre pour la préparer à l’exécution.
 query.prepare("insert into STOCK (id,nom,quantite,poids,taille,genre,datep)" "values (:id,:nom,:quantite,:poids,:taille,:genre,:datep)");
+
 //bindValue+requete
 query.bindValue(":id", id);
 query.bindValue(":nom", nom );
@@ -70,6 +75,7 @@ QSqlQueryModel* stock::afficher()
 QSqlQueryModel * model=new QSqlQueryModel();
 
 model->setQuery("SELECT * FROM stock");
+
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("Identifiant"));
 model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
 model->setHeaderData(2, Qt::Horizontal, QObject::tr("Quantite"));
@@ -95,6 +101,7 @@ bool stock::modifier(){
     query.bindValue(":poids", poids_string );
     query.bindValue(":taille", taille_string );
     query.bindValue(":genre", genre );
+
 
 
     return (query.exec());
@@ -176,21 +183,32 @@ QSqlQueryModel * stock::recherche_nom(QString nom)
     model->setHeaderData(6, Qt::Horizontal, QObject::tr("Date"));
     return model;
 }
-/*QSqlQueryModel *   stock::recherche_date(QString datep)
+QSqlQueryModel * stock::recherche_date(QDate datep)
 {
-    QSqlQueryModel * model = new QSqlQueryModel();
+    QSqlQuery query ;
+    QSqlQueryModel* model=new QSqlQueryModel();
+   query.prepare("select * from STOCK where datep =:datep");
+    query.bindValue(":datep",datep);
+    query.exec();
+    model->setQuery(query);
+return model;
+}
 
-    model->setQuery("select * from stock WHERE datep LIKE  "+datep+"");
+/*
+QSqlQueryModel * car::rechercher_combinaison_all(QString marque,QString couleur,QString entreprise)
+{
+    QSqlQuery *qry=new QSqlQuery();
+    qry->prepare("select * from car where marque=:marque and couleur=:couleur and entreprise=:entreprise");
+    qry->bindValue(":marque",marque);
+    qry->bindValue(":couleur",couleur);
+    qry->bindValue(":entreprise",entreprise);
+    qry->exec();
 
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Identifiant"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Quantite"));
-    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Couleur"));
-    model->setHeaderData(4, Qt::Horizontal, QObject::tr("Poids"));
-    model->setHeaderData(5, Qt::Horizontal, QObject::tr("Taille"));
-    model->setHeaderData(6, Qt::Horizontal, QObject::tr("Genre"));
-    model->setHeaderData(7, Qt::Horizontal, QObject::tr("Date"));
+    QSqlQueryModel *model = new QSqlQueryModel();
+    model->setQuery(*qry);
     return model;
 }
 */
+
+
 

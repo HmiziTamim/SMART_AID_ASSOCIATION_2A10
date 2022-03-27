@@ -25,20 +25,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    histomod.cpp \
+    historique.cpp \
+    histosupp.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
+    qrcode.cpp \
+    statistique.cpp \
     stock.cpp
 
 HEADERS += \
+    histomod.h \
+    historique.h \
+    histosupp.h \
         mainwindow.h \
     connection.h \
+    qrcode.h \
+    statistique.h \
     stock.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        statistique.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    ressource.qrc
