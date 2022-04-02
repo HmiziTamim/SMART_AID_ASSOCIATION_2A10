@@ -2,7 +2,7 @@ QT       += core gui sql
 QT       += core gui printsupport
 QT       += core gui \
                       multimedia
-
+QT       +=charts
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
@@ -20,16 +20,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     connection.cpp \
+    dumessageconnectiondialog.cpp \
     employe.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     connection.h \
+    dumessageconnectiondialog.h \
     employe.h \
     mainwindow.h
 
 FORMS += \
+    dumessageconnectiondialog.ui \
     mainwindow.ui
 
 # Default rules for deployment.
@@ -38,4 +41,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    images.qrc
+    images.qrc \
+    sound.qrc
