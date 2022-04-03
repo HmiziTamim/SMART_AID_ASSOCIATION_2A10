@@ -47,6 +47,22 @@ private slots:
 
     void on_pb_triparprenom_clicked();
 
+    void on_radioButton_toggled(bool checked);
+
+    void on_radioButton_2_toggled(bool checked);
+
+    void on_radioButton_3_toggled(bool checked);
+
+    void on_radioButton_4_toggled(bool checked);
+
+    void on_radioButton_9_toggled(bool checked);
+
+    void on_radioButton_11_toggled(bool checked);
+
+    void on_radioButton_10_toggled(bool checked);
+
+    void on_radioButton_12_toggled(bool checked);
+
 private:
     Ui::MainWindow *ui;
     Patient P;

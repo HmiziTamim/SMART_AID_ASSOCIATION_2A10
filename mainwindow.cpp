@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "patient.h"
+#include <QFile>
+#include <QtWidgets/QApplication>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -245,4 +247,84 @@ void MainWindow::on_pb_triparprenom_clicked()
 {
     Patient E ;
         ui->tableView->setModel(E.trierpatient3());
+}
+
+void MainWindow::on_radioButton_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/QTDark.stylesheet")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_2_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/Adaptic.qss")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_3_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/Perstfic.qss")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_4_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/Fibers.qss")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_9_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_11_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/Wstartpage.qss")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_10_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/VisualScript.qss")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_radioButton_12_toggled(bool checked)
+{
+    QList<QWidget *> widgets = this->findChildren<QWidget *>();
+
+      QFile styleSheetFile("C:/Users/tamim/OneDrive/Documents/QT/Diplaytap.qss")    ;
+      styleSheetFile.open(QFile::ReadOnly) ;
+      QString styleSheet = QLatin1String(styleSheetFile.readAll())  ;
+      widgets.at(0)->setStyleSheet(styleSheet);
 }
