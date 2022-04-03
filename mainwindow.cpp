@@ -18,6 +18,25 @@
 #include "qrcode.h"
 #include <QPixmap>
 
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QChartView>
+#include <QtCharts/QBarSeries>
+#include <QtCharts/QBarSet>
+#include <QtCharts/QLegend>
+#include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QHorizontalStackedBarSeries>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QCategoryAxis>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+
+
+QT_CHARTS_USE_NAMESPACE
+
+
+
+
+
 using namespace qrcodegen;
 using namespace std;
 
@@ -309,8 +328,53 @@ void MainWindow::on_Pdf_clicked()
 void MainWindow::on_stat_clicked()
 {
 
-        stat=new statistique(this);
-            stat->show();
+
+
+    QSqlQueryModel * model= new QSqlQueryModel();
+                               model->setQuery("select * from stock where quantite BETWEEN '0' AND '99' ");
+                               float e=model->rowCount();
+                               model->setQuery("select * from stock  where quantite BETWEEN '100' AND '200' ");
+                               float ee=model->rowCount();
+                               model->setQuery("select * from stock where quantite BETWEEN '201' AND '300' ");
+                               float eee=model->rowCount();
+                               float total=e+ee+eee;
+                               QString a=QString("0-99:  "+ QString::number((e*100)/total,'f',2)+"%" );
+                               QString b=QString("100-200:  "+QString::number((ee*100)/total,'f',2)+"%" );
+                               QString c=QString("201-300:   "+QString::number((eee*100)/total,'f',2)+"%" );
+                               QPieSeries *series = new QPieSeries();
+                               series->append(a,e);
+                               series->append(b,ee);
+                               series->append(c,eee);
+                       if (e!=0)
+                       {QPieSlice *slice = series->slices().at(0);
+                        slice->setLabelVisible();
+                        slice->setPen(QPen());}
+                       if ( ee!=0)
+                       {
+                                // Add label, explode and define brush for 2nd slice
+                                QPieSlice *slice1 = series->slices().at(1);
+                                //slice1->setExploded();
+                                slice1->setLabelVisible();
+                       }
+                       if(eee!=0)
+                       {
+                                // Add labels to rest of slices
+                                QPieSlice *slice2 = series->slices().at(2);
+                                //slice1->setExploded();
+                                slice2->setLabelVisible();
+                       }
+                               // Create the chart widget
+                               QChart *chart = new QChart();
+                               // Add data to chart with title and hide legend
+                               chart->addSeries(series);
+                               chart->setTitle("Pourcentage des quantites produits : nombre des produits: "+ QString::number(total));
+                               chart->legend()->hide();
+                               // Used to display the chart
+                               QChartView *chartView = new QChartView(chart);
+                               chartView->setRenderHint(QPainter::Antialiasing);
+                               chartView->resize(1000,500);
+                               chartView->show();
+
 }
 
 

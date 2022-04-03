@@ -5,6 +5,10 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT       += charts multimedia serialport
+QT       += charts multimedia
+QT       += charts
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -32,7 +36,6 @@ SOURCES += \
         mainwindow.cpp \
     connection.cpp \
     qrcode.cpp \
-    statistique.cpp \
     stock.cpp
 
 HEADERS += \
@@ -42,12 +45,10 @@ HEADERS += \
         mainwindow.h \
     connection.h \
     qrcode.h \
-    statistique.h \
     stock.h
 
 FORMS += \
-        mainwindow.ui \
-        statistique.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
