@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include "stock.h"
-#include "statistique.h"
+
 #include "historique.h"
 #include "histosupp.h"
 #include "histomod.h"
@@ -40,10 +40,15 @@ private slots:
 
     void on_qrCode_clicked();
 
+    void NumPressed();
+    void MathButtonPressed();
+    void EqualButtonPressed();
+    void ChangeNumberSign();
+
 private:
     Ui::MainWindow *ui;
     stock S;  //ob+att
-     statistique *stat;
+
      historique tm;
      histosupp ts;
      histomod hm;
