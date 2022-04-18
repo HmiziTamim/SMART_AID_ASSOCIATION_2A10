@@ -5,8 +5,8 @@
 #include <QIntValidator>
 #include <QRegExpValidator>
 #include <QSqlQuery>
+#include<QString>
 //PDF
-#include <QFileDialog>
 #include <QPrinter>
 #include <QTextDocument>
 #include <QTextStream>
@@ -54,6 +54,25 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->le_prenom_2->setValidator(valiNom);
     ui->le_num_2->setValidator(valiNumTel);
 
+
+
+    ui->radioButton_2->setChecked(true);
+    serial = new QSerialPort(); //Inicializa la variable Serial
+    arduino_available = false;
+
+    foreach (const QSerialPortInfo &serial_Info, QSerialPortInfo::availablePorts()) {//Lee la información de cada puerto serial
+       // qDebug()<<"port: "<<serial_Info.portName();
+        portname = serial_Info.portName();
+       // qDebug()<<"Vendor Id: "<<serial_Info.vendorIdentifier();
+        vendorId = serial_Info.vendorIdentifier();
+       // qDebug()<<"Product Id: "<<serial_Info.productIdentifier();
+        productId = serial_Info.productIdentifier();
+        arduino_available = true;
+    }
+    if(arduino_available){
+        arduino_init();
+    }
+    tem=true;
 }
 
 MainWindow::~MainWindow()
@@ -264,6 +283,7 @@ void MainWindow::on_pb_tri_age_clicked()
     ui->tab_volontaire->setModel(V.tridatedenaissance());
 }
 
+
 void MainWindow::on_pb_pdf_clicked()
 {
 QString strStream;
@@ -306,15 +326,16 @@ const int columnCount = ui->tab_volontaire->model()->columnCount();
 
 QPrinter printer (QPrinter::PrinterResolution);
 printer.setOutputFormat(QPrinter::PdfFormat);
-printer.setOutputFileName("C:/Users/User/OneDrive/Bureau/Next/Atelier_Connexion/PDF/listeDesVolontaires.pdf");
+printer.setOutputFileName("C:/Users/User/OneDrive/Bureau/Next/SMART_AID_ASSOCIATION_2A10/PDF/listeDesVolontaires.pdf");
 
 QTextDocument doc;
 doc.setHtml(strStream);
 doc.print(&printer);
-            QMessageBox::information(nullptr, QObject::tr("Impression du PDF "),
+            QMessageBox::information(nullptr, QObject::tr("Sauvegardement du PDF "),
                                               QObject::tr("pdf enregistré.\n"
                                  "Click Cancel to exit."), QMessageBox::Cancel);
 }
+
 
 int MainWindow::on_pb_cf_clicked()
 {
@@ -325,9 +346,9 @@ int MainWindow::on_pb_cf_clicked()
    QPrinter printer;
 
    printer.setOutputFormat(QPrinter::PdfFormat);
-   printer.setOutputFileName("C:/Users/User/OneDrive/Bureau/Next/Atelier_Connexion/carteF/carte("+id+").pdf");
+   printer.setOutputFileName("C:/Users/User/OneDrive/Bureau/Next/SMART_AID_ASSOCIATION_2A10/carteF/carte("+id+").pdf");
    QPainter painter;
-   QImage carte("C:/Users/User/OneDrive/Bureau/Next/Atelier_Connexion/carte.png");
+   QImage carte("C:/Users/User/OneDrive/Bureau/Next/SMART_AID_ASSOCIATION_2A10/carte.png");
     if (! painter.begin(&printer)) { // failed to open file
               qWarning("failed to open file, is it writable?");
               return 1;
@@ -347,14 +368,9 @@ int MainWindow::on_pb_cf_clicked()
           painter.drawText(110, 200, prenom);
           painter.setPen(Qt::darkRed);
           painter.drawText(240, 230, points);
-          if (! printer.newPage()) {
-              qWarning("failed in flushing page to disk, disk full?");
-              return 1;
-          }
-          painter.drawText(10, 10, "Test");
           painter.end();
-          QMessageBox::information(nullptr, QObject::tr("Impression du PDF "),
-                                     QObject::tr("carte imprimé sur carteF .\n"
+          QMessageBox::information(nullptr, QObject::tr("Sauvegardement du PDF "),
+                                     QObject::tr("carte imprimé sur carte Fidélité .\n"
                                                  "Click Cancel to exit."), QMessageBox::Cancel);
           return 0;
 }
@@ -415,11 +431,14 @@ void MainWindow::on_pb_stat_clicked()
     if (dispo1!=0)
     {QPieSlice *slice = series->slices().at(0);
         slice->setLabelVisible();
-        slice->setPen(QPen());}
+        slice->setPen(QPen());
+        slice->setBrush(QColor(255, 0, 255));
+        }
     if ( dispo!=0)
     {
         QPieSlice *slice1 = series->slices().at(1);
         slice1->setLabelVisible();
+        slice1->setBrush(QColor(0, 255, 255));
     }
 
     QChart *chart = new QChart();
@@ -427,6 +446,8 @@ void MainWindow::on_pb_stat_clicked()
     chart->addSeries(series);
     chart->setTitle("disponibilité des volontaires :Nb Volontaires: "+ QString::number(total));
     chart->legend()->hide();
+    chart->setAnimationOptions(QChart::AllAnimations);
+
     // Used to display the chart
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
@@ -476,10 +497,81 @@ void MainWindow::on_pb_stat_2_clicked()
     chart->addSeries(series);
     chart->setTitle("Age Par Pourcentage des Volontaires");
     chart->legend()->hide();
+    chart->setAnimationOptions(QChart::AllAnimations);
+
     // Used to display the chart
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
     chartView->resize(1000,500);
     chartView->show();
 }
+
+void MainWindow::arduino_init()
+{
+    serial->setPortName(portname);
+    serial->setBaudRate(QSerialPort::Baud9600);
+    serial->setDataBits(QSerialPort::Data8);
+    serial->setParity(QSerialPort::NoParity);
+    serial->setStopBits(QSerialPort::OneStop);
+    serial->setFlowControl(QSerialPort::NoFlowControl);
+    serial->open(QIODevice::ReadWrite);
+    if (SIGNAL(readyRead()))
+        qDebug()<<"test";
+    connect(serial,SIGNAL(readyRead()),this,SLOT(serial_read()));
+}
+
+
+
+
+void MainWindow::serial_read()
+{
+    if(serial->isReadable()&&arduino_available)
+    {
+
+     serialData = serial->readAll();
+     serialBuffer +=QString::fromStdString(serialData.toStdString());
+    MainWindow::update_dist(serialBuffer);
+
+    if(tem){
+        QSqlQuery query;
+        temperature=serialBuffer.mid(2,4);
+        query.prepare("INSERT INTO TEMP (TEMP) " "VALUES (:temperature)");
+        query.bindValue(0,temperature);
+        query.exec();
+        test=temperature;
+        qDebug()<<temperature+"b";
+        qDebug()<<test+"a";
+        tem=false;
+    }
+    if(test!=temperature){
+      tem=true;
+    }
+
+    }
+}
+
+
+void MainWindow::update_dist(const QString sensor_reading)
+{
+    ui->lcdNumber->display(sensor_reading);
+
+}
+
+void MainWindow::on_radioButton_clicked()
+{
+    if(serial->isWritable()){
+            serial->write("1");
+            qDebug()<<"Debut";
+        }
+}
+
+
+void MainWindow::on_radioButton_2_clicked()
+{
+    if(serial->isWritable()){
+            serial->write("2");
+            qDebug()<<"Fin";
+        }
+}
+
 

@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "volontaire.h"
 #include "smtp.h"
+#include <QSerialPort>
+#include <QSerialPortInfo>
 
 namespace Ui {
 class MainWindow;
@@ -56,9 +58,30 @@ private slots:
 
     void on_pb_stat_2_clicked();
 
+      void serial_read();
+
+      void update_dist(const QString );
+
+      void on_radioButton_clicked();
+
+      void on_radioButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     Volontaire V;
+    QSerialPort *serial;
+    QString portname;
+    quint16 vendorId;
+    quint16 productId;
+    bool arduino_available;
+    void arduino_init();
+
+    QString test;
+    QString temperature;
+    bool tem;
+
+    QByteArray serialData;
+    QString serialBuffer;
 };
 
 #endif // MAINWINDOW_H

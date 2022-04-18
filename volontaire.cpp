@@ -64,6 +64,8 @@ return b;
 }
 
 
+
+//START OF CRUD//
 bool Volontaire::ajouter()
 {
     QSqlQuery query;
@@ -124,6 +126,7 @@ query.bindValue(":num",num);
 return query.exec();
 }
 
+//END OF CRUD//
 
 void Volontaire::recup(QString id,QString &nom,QString &prenom,QDate &datedenaissance,QString &adresse, QString &email,QString &dispo,QString &num)
 {

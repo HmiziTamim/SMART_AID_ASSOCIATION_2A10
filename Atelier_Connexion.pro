@@ -7,7 +7,7 @@
 QT       += core gui sql network
 QT       += printsupport
 QT       += charts
-
+QT       += serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Atelier_Connexion
@@ -27,6 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     volontaire.cpp
 
 HEADERS += \
+    arduino.h \
         mainwindow.h \
     connection.h \
     smtp.h \
