@@ -9,18 +9,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->le_id->setValidator(new QIntValidator(0,9999,this));
+    ui->le_idevent->setValidator(new QIntValidator(0,9999,this));
     ui->tab_evenement->setModel(E.afficher());
     QRegExp rxnom("\\b[a-zA-Z0-9]{2,10}\\b");
         QRegExpValidator *valinom =new QRegExpValidator(rxnom,this);
-        ui->le_nom->setValidator(valinom);
-        ui->le_nom_2->setValidator(valinom);
-        ui->le_lieu->setValidator(valinom);
-        ui->le_lieu_2->setValidator(valinom);
+        ui->le_nomevent->setValidator(valinom);
+        ui->le_nom_2event->setValidator(valinom);
+        ui->le_lieuevent->setValidator(valinom);
+        ui->le_lieu_2event->setValidator(valinom);
         QRegExp rxtype("\\b[a-zA-Z0-9]{2,10}\\b");
             QRegExpValidator *valitype =new QRegExpValidator(rxtype,this);
-            ui->le_type->setValidator(valitype);
-            ui->le_type_2->setValidator(valitype);
+            ui->le_typeevent->setValidator(valitype);
+            ui->le_type_2event->setValidator(valitype);
             ui->quickWidget->setSource(QUrl(QStringLiteral("qrc:/map.qml")));
             ui->quickWidget->show();
 }
@@ -32,10 +32,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pb_ajouterevent_clicked()
 {
-    int id=ui->le_id->text().toUInt();
-    QString nom=ui->le_nom->text();
-    QString type=ui->le_type->currentText();
-    QString lieu=ui->le_lieu->text();
+    int id=ui->le_idevent->text().toUInt();
+    QString nom=ui->le_nomevent->text();
+    QString type=ui->le_typeevent->currentText();
+    QString lieu=ui->le_lieuevent->text();
    QDate date_debut=ui->le_date_debut->date();
     QDate date_fin=ui->le_date_fin->date();
 
@@ -61,7 +61,7 @@ void MainWindow::on_pb_ajouterevent_clicked()
 
 void MainWindow::on_le_supprimer_clicked()
 {
-Evenement E1; E1.setid(ui->le_id_supp->text().toInt()) ;
+Evenement E1; E1.setid(ui->le_id_suppevent->text().toInt()) ;
 bool test=E1.supprimer(E1.getid());
 QMessageBox msgBox;
 if(test)
@@ -76,10 +76,10 @@ msgBox.exec();
 
 void MainWindow::on_pb_modifierevent_clicked()
 {
-    int id=ui->le_id_2->text().toInt();
-    QString nom=ui->le_nom_2->text();
-    QString type=ui->le_type_2->currentText();
-    QString lieu=ui->le_lieu_2->text();
+    int id=ui->le_id_2event->text().toInt();
+    QString nom=ui->le_nom_2event->text();
+    QString type=ui->le_type_2event->currentText();
+    QString lieu=ui->le_lieu_2event->text();
 
     QDate date_debut=ui->le_date_debut_2->date();
     QDate date_fin=ui->le_date_fin_2->date();
@@ -109,7 +109,7 @@ void MainWindow::on_pb_rechercheevent_clicked()
 {
 
      Evenement E ;
-     QString rech =ui->recherche->text();
+     QString rech =ui->rechercheevent->text();
      if (rech=="")
 
          ui->tab_evenement->setModel(E.afficher());
@@ -138,11 +138,11 @@ void MainWindow::on_tab_evenement_activated(const QModelIndex &index)
     {
     while(qry.next())
     {
-        ui->le_id_2->setText((qry.value(0).toString()));
+        ui->le_id_2event->setText((qry.value(0).toString()));
 
-        ui->le_nom_2->setText(qry.value(1).toString());
-        ui->le_type_2->setCurrentText(qry.value(2).toString());
-        ui->le_lieu_2->setText(qry.value(3).toString());
+        ui->le_nom_2event->setText(qry.value(1).toString());
+        ui->le_type_2event->setCurrentText(qry.value(2).toString());
+        ui->le_lieu_2event->setText(qry.value(3).toString());
        // ui->le_date_debut_2->setDate(qry.value(4).toDate());
         //ui->le_date_fin_2->setDate(qry.value(5).toDate());
 

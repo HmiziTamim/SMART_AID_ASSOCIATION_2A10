@@ -41,7 +41,7 @@
      <attribute name="title">
       <string>Ajouter evenement</string>
      </attribute>
-     <widget class="QLineEdit" name="le_lieu">
+     <widget class="QLineEdit" name="le_lieuevent">
       <property name="geometry">
        <rect>
         <x>460</x>
@@ -113,7 +113,7 @@ border-radius: 7;
        <string>id_evenement</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_id">
+     <widget class="QLineEdit" name="le_idevent">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -134,7 +134,7 @@ border-radius: 7;
        <string/>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_nom">
+     <widget class="QLineEdit" name="le_nomevent">
       <property name="geometry">
        <rect>
         <x>150</x>
@@ -318,7 +318,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="le_type">
+     <widget class="QComboBox" name="le_typeevent">
       <property name="geometry">
        <rect>
         <x>460</x>
@@ -352,12 +352,12 @@ border-radius: 7;
       </item>
      </widget>
      <zorder>label_16</zorder>
-     <zorder>le_lieu</zorder>
+     <zorder>le_lieuevent</zorder>
      <zorder>label_4</zorder>
      <zorder>le_date_fin</zorder>
      <zorder>label</zorder>
-     <zorder>le_id</zorder>
-     <zorder>le_nom</zorder>
+     <zorder>le_idevent</zorder>
+     <zorder>le_nomevent</zorder>
      <zorder>label_7</zorder>
      <zorder>le_date_debut</zorder>
      <zorder>label_6</zorder>
@@ -365,7 +365,7 @@ border-radius: 7;
      <zorder>pb_ajouterevent</zorder>
      <zorder>label_3</zorder>
      <zorder>label_19</zorder>
-     <zorder>le_type</zorder>
+     <zorder>le_typeevent</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
@@ -381,7 +381,7 @@ border-radius: 7;
        </rect>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_id_supp">
+     <widget class="QLineEdit" name="le_id_suppevent">
       <property name="geometry">
        <rect>
         <x>490</x>
@@ -455,7 +455,7 @@ color:white;
        <string>Recherche</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="recherche">
+     <widget class="QLineEdit" name="rechercheevent">
       <property name="geometry">
        <rect>
         <x>490</x>
@@ -578,10 +578,10 @@ color:white;
      </widget>
      <zorder>label_15</zorder>
      <zorder>tab_evenement</zorder>
-     <zorder>le_id_supp</zorder>
+     <zorder>le_id_suppevent</zorder>
      <zorder>le_supprimer</zorder>
      <zorder>pb_rechercheevent</zorder>
-     <zorder>recherche</zorder>
+     <zorder>rechercheevent</zorder>
      <zorder>pb_triparnomevent</zorder>
      <zorder>pb_triparidevent</zorder>
      <zorder>pb_pdfevent</zorder>
@@ -595,7 +595,7 @@ color:white;
        <rect>
         <x>10</x>
         <y>130</y>
-        <width>81</width>
+        <width>101</width>
         <height>16</height>
        </rect>
       </property>
@@ -638,7 +638,7 @@ color:white;
        <string>Date_debut</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_id_2">
+     <widget class="QLineEdit" name="le_id_2event">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -659,7 +659,7 @@ border-radius: 7;
        <string/>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_nom_2">
+     <widget class="QLineEdit" name="le_nom_2event">
       <property name="geometry">
        <rect>
         <x>130</x>
@@ -698,7 +698,7 @@ border-radius: 7;
 </string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_lieu_2">
+     <widget class="QLineEdit" name="le_lieu_2event">
       <property name="geometry">
        <rect>
         <x>440</x>
@@ -862,7 +862,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
       </property>
      </widget>
-     <widget class="QComboBox" name="le_type_2">
+     <widget class="QComboBox" name="le_type_2event">
       <property name="geometry">
        <rect>
         <x>440</x>
@@ -899,17 +899,17 @@ border-radius: 7;
      <zorder>label_5</zorder>
      <zorder>label_8</zorder>
      <zorder>label_9</zorder>
-     <zorder>le_id_2</zorder>
-     <zorder>le_nom_2</zorder>
+     <zorder>le_id_2event</zorder>
+     <zorder>le_nom_2event</zorder>
      <zorder>le_date_debut_2</zorder>
-     <zorder>le_lieu_2</zorder>
+     <zorder>le_lieu_2event</zorder>
      <zorder>le_date_fin_2</zorder>
      <zorder>label_10</zorder>
      <zorder>label_11</zorder>
      <zorder>label_12</zorder>
      <zorder>pb_modifierevent</zorder>
      <zorder>label_20</zorder>
-     <zorder>le_type_2</zorder>
+     <zorder>le_type_2event</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
