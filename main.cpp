@@ -11,21 +11,9 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QTranslator t;
 
-    QStringList languages;
     Connection c;
-    languages << "Frensh" << "English";
-   const QString lang=QInputDialog::getItem(NULL,"Select language","languge",languages);
-    if(lang == "English")
-    {
-        t.load(":/english.qm");
 
-    }
-    else if(lang != "Frensh")
-    {
-        a.installTranslator(&t);
-    }
 
     bool test=c.createconnect();
       MainWindow w;

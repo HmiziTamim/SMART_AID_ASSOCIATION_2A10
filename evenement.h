@@ -3,7 +3,16 @@
 #include <QString>
 #include<QSqlQueryModel>
 #include<QDate>
-
+#include<QSqlQuery>
+#include<QtDebug>
+#include<QObject>
+#include <QFileDialog>
+#include <QPrinter>
+#include <QTextDocument>
+#include <QList>
+#include <QPieSlice>
+#include <QPieSeries>
+#include <QtCharts>
 class Evenement
 {
 public:

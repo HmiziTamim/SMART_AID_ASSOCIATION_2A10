@@ -4,6 +4,21 @@
 #include <QMainWindow>
 #include "evenement.h"
 #include <QModelIndex>
+#include<QMessageBox>
+#include<QIntValidator>
+#include<QModelIndex>
+#include <QRegExpValidator>
+#include<QSqlQuery>
+#include <QPdfWriter>
+#include <QPainter>
+#include <QtPrintSupport/QPrinter>
+#include <QPrinter>
+
+#include <QFileDialog>
+#include <QTextDocument>
+#include <QTextStream>
+#include <QUrl>
+//#include <Qtpositioning>
 namespace Ui {
 class MainWindow;
 }
@@ -17,29 +32,41 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pb_ajouter_clicked();
+
 
     void on_le_supprimer_clicked();
 
-    void on_pb_modifier_clicked();
+
 
     void on_tab_evenement_activated(const QModelIndex &index);
 
-    void on_pb_recherche_clicked();
-
-    void on_pb_triparnom_clicked();
-
-    void on_pb_triparid_clicked();
-
-    void on_pb_pdf_clicked();
 
 
 
-    void on_pushButton_5produit_clicked();
+
+
+
+
+
+
 
     void on_tabWidget_currentChanged(int index);
 
     void on_tabWidget_tabBarClicked(int index);
+
+    void on_pb_ajouterevent_clicked();
+
+    void on_pb_changer_clicked();
+
+    void on_pb_modifierevent_clicked();
+
+    void on_pb_triparidevent_clicked();
+
+    void on_pb_triparnomevent_clicked();
+
+    void on_pb_pdfevent_clicked();
+
+    void on_pb_rechercheevent_clicked();
 
 private:
     Ui::MainWindow *ui;

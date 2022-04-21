@@ -1,14 +1,5 @@
 #include "evenement.h"
-#include<QSqlQuery>
-#include<QtDebug>
-#include<QObject>
-#include <QFileDialog>
-#include <QPrinter>
-#include <QTextDocument>
-#include <QList>
-#include <QPieSlice>
-#include <QPieSeries>
-#include <QtCharts>
+
 Evenement::Evenement()
 {
 id=0;
@@ -169,54 +160,54 @@ void Evenement::CREATION_PDF()
 
 void Evenement::statistique(QWidget * w)
 {
-    int type1 = 0,type2=0,type3 =0;
-        QSqlQuery query("SELECT COUNT(*) FROM evenement WHERE type='type1'");
+    int Congres = 0,Don=0,Sensibilisation =0;
+        QSqlQuery query("SELECT COUNT(*) FROM evenement WHERE type='Congres'");
         while(query.next())
         {
-            type1 = query.value(0).toInt();
+            Congres = query.value(0).toInt();
         }
-        QSqlQuery query2("SELECT COUNT(*) FROM evenement WHERE type='type2'");
+        QSqlQuery query2("SELECT COUNT(*) FROM evenement WHERE type='Don'");
         while(query2.next())
         {
-           type2 = query2.value(0).toInt();
+           Don = query2.value(0).toInt();
         }
-        QSqlQuery query3("SELECT COUNT(*) FROM evenement WHERE type='type3'");
+        QSqlQuery query3("SELECT COUNT(*) FROM evenement WHERE type='Sensibilisation'");
         while(query3.next())
         {
-           type3 = query3.value(0).toInt();
+           Sensibilisation = query3.value(0).toInt();
         }
 
 
 
-    int total=(type1+type2+type3);
+    int total=(Congres+Don+Sensibilisation);
 
     QPieSeries *series = new QPieSeries();
     series->setHoleSize(0.28);
     //series->setPieSize(1.0);
 
-    float val=(type1*100)/total;  //calcul du pourcentage
+    float val=(Congres*100)/total;  //calcul du pourcentage
     QString nbre_string = QString::number(val);
-series->append("type1 "+nbre_string+"%  ",type1);
-   val=(type2*100)/total;  //calcul du pourcentage
+series->append("Congres "+nbre_string+"%  ",Congres);
+   val=(Don*100)/total;  //calcul du pourcentage
    nbre_string = QString::number(val);
-series->append("type2 "+nbre_string+"% ",type2);
-    val=(type3*100)/total;  //calcul du pourcentage
+series->append("Don "+nbre_string+"% ",Don);
+    val=(Sensibilisation*100)/total;  //calcul du pourcentage
     nbre_string = QString::number(val);
-series->append("type3 "+nbre_string+"% ",type3);
+series->append("Sensibilisation "+nbre_string+"% ",Sensibilisation);
 
 
-QPieSlice * type1_s = series->slices().at(0);
-QPieSlice * type2_s = series->slices().at(1);
-QPieSlice * type3_s = series->slices().at(2);
+QPieSlice * Congres_s = series->slices().at(0);
+QPieSlice * Don_s = series->slices().at(1);
+QPieSlice * Sensibilisation_s = series->slices().at(2);
 
 
-type1_s->setLabelVisible(true);
-type2_s->setLabelVisible(true);
-type3_s->setLabelVisible(true);
+Congres_s->setLabelVisible(true);
+Don_s->setLabelVisible(true);
+Sensibilisation_s->setLabelVisible(true);
 
-    type1_s->setBrush(QColor::fromRgb(85, 31, 31));
-    type2_s->setBrush(QColor::fromRgb(219, 70, 0));
-type3_s->setBrush(QColor::fromRgb(160, 205, 120));
+    Congres_s->setBrush(QColor::fromRgb(85, 31, 31));
+    Don_s->setBrush(QColor::fromRgb(219, 70, 0));
+Sensibilisation_s->setBrush(QColor::fromRgb(160, 205, 120));
 
 
 

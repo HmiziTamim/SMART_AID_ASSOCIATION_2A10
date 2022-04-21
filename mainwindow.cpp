@@ -1,21 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "evenement.h"
-#include<QMessageBox>
-#include<QIntValidator>
-#include<QModelIndex>
-#include <QRegExpValidator>
-#include<QSqlQuery>
-#include <QPdfWriter>
-#include <QPainter>
-#include <QtPrintSupport/QPrinter>
-#include <QPrinter>
 
-#include <QFileDialog>
-#include <QTextDocument>
-#include <QTextStream>
-#include <QUrl>
-//#include <Qtpositioning>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -44,7 +30,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pb_ajouter_clicked()
+void MainWindow::on_pb_ajouterevent_clicked()
 {
     int id=ui->le_id->text().toUInt();
     QString nom=ui->le_nom->text();
@@ -72,6 +58,7 @@ void MainWindow::on_pb_ajouter_clicked()
             }
 }
 
+
 void MainWindow::on_le_supprimer_clicked()
 {
 Evenement E1; E1.setid(ui->le_id_supp->text().toInt()) ;
@@ -87,7 +74,7 @@ else
 msgBox.exec();
 }
 
-void MainWindow::on_pb_modifier_clicked()
+void MainWindow::on_pb_modifierevent_clicked()
 {
     int id=ui->le_id_2->text().toInt();
     QString nom=ui->le_nom_2->text();
@@ -118,7 +105,7 @@ void MainWindow::on_pb_modifier_clicked()
 
 
 
-void MainWindow::on_pb_recherche_clicked()
+void MainWindow::on_pb_rechercheevent_clicked()
 {
 
      Evenement E ;
@@ -130,13 +117,13 @@ void MainWindow::on_pb_recherche_clicked()
          ui->tab_evenement->setModel(E.recherche(rech));
 }
 
-void MainWindow::on_pb_triparnom_clicked()
+void MainWindow::on_pb_triparnomevent_clicked()
 {
     Evenement E ;
     ui->tab_evenement->setModel(E.trierevenement1());
 }
 
-void MainWindow::on_pb_triparid_clicked()
+void MainWindow::on_pb_triparidevent_clicked()
 {
     Evenement E ;
     ui->tab_evenement->setModel(E.trierevenement2());
@@ -163,7 +150,7 @@ void MainWindow::on_tab_evenement_activated(const QModelIndex &index)
     }
 }
 
-void MainWindow::on_pb_pdf_clicked()
+void MainWindow::on_pb_pdfevent_clicked()
 {
     QString strStream;
     strStream = QFileDialog::getSaveFileName((QWidget* )0, "Export PDF", QString(), "*.pdf");
@@ -224,7 +211,7 @@ void MainWindow::on_pb_pdf_clicked()
 
 
 
-void MainWindow::on_pushButton_5produit_clicked()
+void MainWindow::on_pb_changer_clicked()
 {
     if (ui->comboBoxevent->currentText()=="ENG")
     {
@@ -239,12 +226,12 @@ void MainWindow::on_pushButton_5produit_clicked()
         ui->label_4->setText("location event");
         ui->label_6->setText("Start date");
         ui->label_7->setText("End date");
-        ui->pb_modifier->setText("Edit");
-        ui->pb_ajouter->setText("Add");
-        ui->pb_triparid->setText("Sort by id");
-        ui->pb_triparnom->setText("Sort by name");
+        ui->pb_modifierevent->setText("Edit");
+        ui->pb_ajouterevent->setText("Add");
+        ui->pb_triparidevent->setText("Sort by id");
+        ui->pb_triparnomevent->setText("Sort by name");
         ui->le_supprimer->setText("Delete");
-        ui->pushButton_5produit->setText("Change");
+        ui->pb_changer->setText("Change");
         ui->label_5->setText("ID event");
         ui->label_8->setText("Name event");
         ui->label_10->setText("Type event");
@@ -280,12 +267,12 @@ void MainWindow::on_pushButton_5produit_clicked()
         ui->label_4->setText("Lieu evenement");
         ui->label_6->setText("date debut");
         ui->label_7->setText("date fin");
-        ui->pb_modifier->setText("modifier");
-        ui->pb_ajouter->setText("Ajouter");
-        ui->pb_triparid->setText("tri_par_id");
-        ui->pb_triparnom->setText("tri_par_nom");
+        ui->pb_modifierevent->setText("modifier");
+        ui->pb_ajouterevent->setText("Ajouter");
+        ui->pb_triparidevent->setText("tri_par_id");
+        ui->pb_triparnomevent->setText("tri_par_nom");
         ui->le_supprimer->setText("supprimer");
-        ui->pushButton_5produit->setText("changer");
+        ui->pb_changer->setText("changer");
         ui->label_5->setText("ID evenement");
         ui->label_8->setText("Nom evenement");
         ui->label_10->setText("Type evenement");
@@ -317,4 +304,19 @@ void MainWindow::on_tabWidget_tabBarClicked(int index)
 {
     E.statistique(ui->widget);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

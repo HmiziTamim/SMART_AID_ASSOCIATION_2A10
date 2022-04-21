@@ -35,7 +35,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -224,7 +224,7 @@ background-color:rgba(117, 190, 218, 0.0);</string>
        <string>nom_evenement</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_ajouter">
+     <widget class="QPushButton" name="pb_ajouterevent">
       <property name="geometry">
        <rect>
         <x>290</x>
@@ -337,17 +337,17 @@ border-radius: 7;
       </property>
       <item>
        <property name="text">
-        <string>type1</string>
+        <string>Congres</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>type2</string>
+        <string>Don</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>type3</string>
+        <string>Sensibilisation</string>
        </property>
       </item>
      </widget>
@@ -362,7 +362,7 @@ border-radius: 7;
      <zorder>le_date_debut</zorder>
      <zorder>label_6</zorder>
      <zorder>label_2</zorder>
-     <zorder>pb_ajouter</zorder>
+     <zorder>pb_ajouterevent</zorder>
      <zorder>label_3</zorder>
      <zorder>label_19</zorder>
      <zorder>le_type</zorder>
@@ -427,7 +427,7 @@ color:white;
        <string>Supprimer</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_recherche">
+     <widget class="QPushButton" name="pb_rechercheevent">
       <property name="geometry">
        <rect>
         <x>570</x>
@@ -473,7 +473,7 @@ border-radius: 7;
 </string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_triparnom">
+     <widget class="QPushButton" name="pb_triparnomevent">
       <property name="geometry">
        <rect>
         <x>520</x>
@@ -501,7 +501,7 @@ color:white;
        <string>Tri par nom</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_triparid">
+     <widget class="QPushButton" name="pb_triparidevent">
       <property name="geometry">
        <rect>
         <x>520</x>
@@ -548,7 +548,7 @@ color:white;
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_pdf">
+     <widget class="QPushButton" name="pb_pdfevent">
       <property name="geometry">
        <rect>
         <x>520</x>
@@ -580,11 +580,11 @@ color:white;
      <zorder>tab_evenement</zorder>
      <zorder>le_id_supp</zorder>
      <zorder>le_supprimer</zorder>
-     <zorder>pb_recherche</zorder>
+     <zorder>pb_rechercheevent</zorder>
      <zorder>recherche</zorder>
-     <zorder>pb_triparnom</zorder>
-     <zorder>pb_triparid</zorder>
-     <zorder>pb_pdf</zorder>
+     <zorder>pb_triparnomevent</zorder>
+     <zorder>pb_triparidevent</zorder>
+     <zorder>pb_pdfevent</zorder>
     </widget>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -785,7 +785,7 @@ border-radius: 7;
        <string>Date_fin</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_modifier">
+     <widget class="QPushButton" name="pb_modifierevent">
       <property name="geometry">
        <rect>
         <x>280</x>
@@ -881,17 +881,17 @@ border-radius: 7;
       </property>
       <item>
        <property name="text">
-        <string>type1</string>
+        <string>Congres</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>type2</string>
+        <string>Don</string>
        </property>
       </item>
       <item>
        <property name="text">
-        <string>type3</string>
+        <string>Sensibilisation</string>
        </property>
       </item>
      </widget>
@@ -907,7 +907,7 @@ border-radius: 7;
      <zorder>label_10</zorder>
      <zorder>label_11</zorder>
      <zorder>label_12</zorder>
-     <zorder>pb_modifier</zorder>
+     <zorder>pb_modifierevent</zorder>
      <zorder>label_20</zorder>
      <zorder>le_type_2</zorder>
     </widget>
@@ -1233,7 +1233,7 @@ border-radius: 7;
      </property>
     </item>
    </widget>
-   <widget class="QPushButton" name="pushButton_5produit">
+   <widget class="QPushButton" name="pb_changer">
     <property name="geometry">
      <rect>
       <x>380</x>
@@ -1270,7 +1270,7 @@ border-radius: 7;
    <zorder>label_18</zorder>
    <zorder>label_17</zorder>
    <zorder>comboBoxevent</zorder>
-   <zorder>pushButton_5produit</zorder>
+   <zorder>pb_changer</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
