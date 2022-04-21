@@ -12,23 +12,20 @@
 #include "histomod.h"
 #include <QFileDialog>
 #include <QPainter>
-#include <QPdfWriter>
-#include <QDesktopServices>
-#include <QUrl>
+#include <QPdfWriter>  //generate PDFs that can be used as a paint device
+#include <QDesktopServices> //accessing common desktop services
 #include "qrcode.h"
 #include <QPixmap>
 
 #include <QtWidgets/QMainWindow>
-#include <QtCharts/QChartView>
-#include <QtCharts/QBarSeries>
-#include <QtCharts/QBarSet>
-#include <QtCharts/QLegend>
-#include <QtCharts/QBarCategoryAxis>
-#include <QtCharts/QHorizontalStackedBarSeries>
-#include <QtCharts/QLineSeries>
-#include <QtCharts/QCategoryAxis>
+#include <QtCharts/QChartView>  //display charts
+
+#include <QtCharts/QLegend>  //displays the legend of a chart
+  //data in line charts
+#include <QtCharts/QCategoryAxis>  //places named ranges on the axis
 #include <QtCharts/QPieSeries>
 #include <QtCharts/QPieSlice>
+//#include <QUrl>
 
 
 QT_CHARTS_USE_NAMESPACE
@@ -93,10 +90,7 @@ MainWindow::MainWindow(QWidget *parent) : //Constructeur de la classe mainwindow
 
 
     ui->tab_stock->setModel(S.afficher());
-    ui->tab_his->setModel(tm.afficher());
-    ui->hist_mod->setModel(hm.afficher());
-    ui->hist_supp->setModel(ts.affichSupp());
-
+  ui->tab_his->setModel(H.afficherHistorique());
 
 
     ui->Display->setText(QString::number(calcVal));
@@ -144,13 +138,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QString idh=ui->le_id->text();
-    QString nomh=ui->le_nom->text();
-    QString genreh=ui->le_genre->text();
-    int quantiteh=ui->la_qte->text().toInt();
-    int poidsh=ui->le_poids->text().toInt();
-    int tailleh=ui->la_taille->text().toInt();
-    QDate dateph= ui->la_date->date();
+
 
 
     QString id=ui->le_id->text();
@@ -162,8 +150,12 @@ void MainWindow::on_pushButton_clicked()
     QDate datep= ui->la_date->date();
 
 
+    QString idh=ui->le_id->text();
+
+
+
+
    stock S(id,nom,quantite,poids,taille,genre,datep);
-   historique tm( idh, nomh, quantiteh, poidsh, tailleh, genreh, dateph);
     bool test= S.ajouter();
 
 
@@ -171,9 +163,12 @@ void MainWindow::on_pushButton_clicked()
     if(test )
     {
         //actualiser
-         tm.ajouter();
         ui->tab_stock->setModel(S.afficher());
-        ui->tab_his->setModel(tm.afficher());
+
+        historique h( "ajout", idh);
+
+                    h.ajouter_historique();
+                    ui->tab_his->setModel(H.afficherHistorique());
 
         QMessageBox::information(nullptr, QObject::tr("OK"),
                              QObject::tr("Ajout effectué\n"
@@ -207,19 +202,20 @@ void MainWindow::on_pb_supp_clicked()
     QSqlQuery query;
 
     S.setid(ui->le_id_supp->text());
-     QString idhs=ui->le_id_supp->text();
-     histosupp ts( idhs);
+
+    QString idh=ui->le_id_supp->text();
+
 
     bool test=S.supprimer(S.getid());
+
     if(test)
     {
 
-        ts.ajoutSupp();
 
-
-       ui->hist_supp->setModel(ts.affichSupp());
 
         ui->tab_stock->setModel(S.afficher());
+
+
 
         QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
                 notifyIcon->show();
@@ -229,6 +225,10 @@ void MainWindow::on_pb_supp_clicked()
         QMessageBox::information(nullptr, QObject::tr("OK"),
                                  QObject::tr("supp effectué\n"
                                              "Click Cancel to exit."), QMessageBox::Cancel);
+
+        historique h("suppression",idh);
+        h.ajouter_historique();
+        ui->tab_his->setModel(H.afficherHistorique());
         }
         else
             QMessageBox::critical(nullptr,QObject::tr("NOT OK"),
@@ -249,22 +249,18 @@ void MainWindow::on_pb_modifier_clicked()
 
 
 
-            QString idh=ui->le_id->text();
-            QString nomh=ui->le_nom->text();
-            QString genreh=ui->le_genre->text();
-            int quantiteh=ui->la_qte->text().toInt();
-            int poidsh=ui->le_poids->text().toInt();
-            int tailleh=ui->la_taille->text().toInt();
-            QDate dateph= ui->la_date->date();
+            QString idh=ui->id_mod->text();
 
-            histomod hm( idh, nomh, quantiteh, poidsh, tailleh, genreh, dateph) ;
+
+
 
             if(S.modifier())
             {
 
-                hm.ajouter();
 
-                ui->hist_mod->setModel(hm.afficher());
+                historique h( "modification", idh);
+                h.ajouter_historique();
+                ui->tab_his->setModel(H.afficherHistorique());
 
                 ui->tab_stock->setModel(S.afficher());
 
@@ -281,6 +277,7 @@ void MainWindow::on_pb_modifier_clicked()
 
 
 
+
             }
             else
                 QMessageBox::critical(nullptr, QObject::tr("modification produit"),
@@ -291,7 +288,6 @@ void MainWindow::on_recherche_Stock_clicked()
 {
 
 
-  //  ui->tab_stock->setModel(S.recherche_nom(ui->input_rech->text()));
 
     ui->tab_stock->setModel(S.recherche_date(ui->date->date()));
 
@@ -427,13 +423,13 @@ void MainWindow::on_stat_clicked()
 
 void MainWindow::on_qrCode_clicked()
 {
-    int tabeq=ui->tab_stock->currentIndex().row();
+    int tabeq=ui->tab_stock->currentIndex().row(); //track selected item
                QVariant idd=ui->tab_stock->model()->data(ui->tab_stock->model()->index(tabeq,0));
                QString id=idd.toString();
               // QString code=idd.toSTring();
                QSqlQuery qry;
-               qry.prepare("select * from PRODUITS where code=:code");
-               qry.bindValue(":code",id);
+               qry.prepare("select * from Stock where id=:id");
+               qry.bindValue(":id",id);
                qry.exec();
 
                 QString nom,genre;//attributs
@@ -453,7 +449,7 @@ void MainWindow::on_qrCode_clicked()
 
                }
                id=QString(id);
-                      id="CODE:\t" +id+ "NOM\t:" +nom+ "prix:\t" +nom+ "qualite:\t" +quantite+ "stock:\t" +poids+ "stock:\t" +taille+ "stock:\t" +genre ;
+                      id="id:\t" +id+ "NOM\t:" +nom+ "quantite:\t" +quantite+ "poids:\t" +poids+ "stock:\t" +taille+ "genre:\t" +genre ;
                QrCode qr = QrCode::encodeText(id.toUtf8().constData(), QrCode::Ecc::HIGH);
 
                // Read the black & white pixels
@@ -564,6 +560,21 @@ void MainWindow::EqualButtonPressed(){
     // Put solution in display
     ui->Display->setText(QString::number(solution));
 
+
+
+
+
+
+    if(solution > 100000 )
+    {
+
+
+                    QMessageBox::critical(nullptr,QObject::tr("NOT OK"),
+                                          QObject::tr("Quantité Dépassée\n"
+                                                      "Click Cancel to exit."), QMessageBox::Cancel);
+    }
+
+
 }
 
 void MainWindow::ChangeNumberSign(){
@@ -594,4 +605,21 @@ void MainWindow::ChangeNumberSign(){
 
 
 
+
+
+void MainWindow::on_rech_nom_clicked()
+{
+    ui->tab_stock->setModel(S.recherche_nom(ui->input_rech->text()));
+
+    // ui->tab_stock->setModel(S.recherche_date(ui->date->date()));
+
+
+         /* QDate datep=ui->input_rech->text().date();
+                QDate datep=ui->date;
+                ui->tab_stock->setModel(S.recherche_date(datep));*/
+                QMessageBox::information(nullptr,QObject::tr("OK"),
+                                          QObject::tr("recherche effectue.\n"
+                                                      "clic cancel to exit."),QMessageBox::Cancel);
+
+}
 

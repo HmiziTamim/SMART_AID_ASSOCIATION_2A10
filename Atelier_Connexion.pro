@@ -29,9 +29,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-    histomod.cpp \
     historique.cpp \
-    histosupp.cpp \
         main.cpp \
         mainwindow.cpp \
     connection.cpp \
@@ -39,11 +37,9 @@ SOURCES += \
     stock.cpp
 
 HEADERS += \
-    histomod.h \
     historique.h \
-    histosupp.h \
-        mainwindow.h \
     connection.h \
+    mainwindow.h \
     qrcode.h \
     stock.h
 

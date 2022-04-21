@@ -140,7 +140,7 @@ QSqlQueryModel * stock::afficher_tri_alphabetique_Stock(){
 QSqlQueryModel * stock::afficher_tri_identifiant_Stock(){
 
     QSqlQueryModel * model = new QSqlQueryModel();
-    model->setQuery("select * from stock ORDER BY id");
+    model->setQuery("select * from stock ORDER BY id ASC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("Identifiant"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Quantite"));
@@ -194,21 +194,6 @@ QSqlQueryModel * stock::recherche_date(QDate datep)
 return model;
 }
 
-/*
-QSqlQueryModel * car::rechercher_combinaison_all(QString marque,QString couleur,QString entreprise)
-{
-    QSqlQuery *qry=new QSqlQuery();
-    qry->prepare("select * from car where marque=:marque and couleur=:couleur and entreprise=:entreprise");
-    qry->bindValue(":marque",marque);
-    qry->bindValue(":couleur",couleur);
-    qry->bindValue(":entreprise",entreprise);
-    qry->exec();
-
-    QSqlQueryModel *model = new QSqlQueryModel();
-    model->setQuery(*qry);
-    return model;
-}
-*/
 
 
 

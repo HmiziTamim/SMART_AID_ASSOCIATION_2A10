@@ -45,13 +45,13 @@ private slots:
     void EqualButtonPressed();
     void ChangeNumberSign();
 
+    void on_rech_nom_clicked();
+
 private:
     Ui::MainWindow *ui;
     stock S;  //ob+att
 
-     historique tm;
-     histosupp ts;
-     histomod hm;
+    historique H;
 
 };
 
