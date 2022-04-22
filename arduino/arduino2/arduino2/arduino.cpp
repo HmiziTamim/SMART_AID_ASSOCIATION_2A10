@@ -4,7 +4,7 @@
 arduino::arduino(QObject *parent)
     :QObject {parent}
 {
-    _serial.setPortName("COM9");
+    _serial.setPortName("COM8");
      _serial.setBaudRate(QSerialPort::Baud9600);
       _serial.setDataBits(QSerialPort::Data8);
        _serial.setParity(QSerialPort::NoParity);

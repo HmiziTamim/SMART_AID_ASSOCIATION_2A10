@@ -158,19 +158,6 @@ void verif()
  
   }
  
- else   {
-    
-   
-   
-    Serial.println(" Access denied");
-    digitalWrite(LED_R, HIGH);
-    tone(BUZZER, 300);
-    delay(1000);
-    digitalWrite(LED_R, LOW);
-    noTone(BUZZER);
-     
-  }
-
 
 
 

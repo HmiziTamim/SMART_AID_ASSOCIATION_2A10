@@ -38,8 +38,11 @@ void MainWindow::updateGUI(QByteArray data)
 
 void MainWindow::on_on_clicked()
 {
+
   if (arduinoc->isWritable())
-      arduinoc->write("o");
+  arduinoc->write("o");
+
+
   else
       qDebug() << "couldn't write ro serial:";
 
@@ -63,34 +66,25 @@ void MainWindow::on_off_clicked()
 void MainWindow::on_verifier_clicked()
 {
 
- QString idt=ui->idt->text();;
-
+ QString idt=ui->idt->text();
  QString id=ui->id->text();
- if (arduinoc->isWritable() && idt=="2A 2E C0 48")
-      {  arduinoc->write("v");
-
-
-     ui->tabaff->setModel(C.afficher(idt));
-
-    }
-    else
-       { qDebug() << "couldn't write ro serial:";
 
 
 
+ if (arduinoc->isWritable())
+ {   arduinoc->write("v");
+     if (idt == "2A 2E C0 48")
+
+     {
+
+ui->tabaff->setModel(C.afficher(idt));
+}
 
 
-    }
+}}
 
 
 
-
-
-    //ui->tabaff->setModel(C.afficher(idt));}
-
-
-
-    }
 
 // select * base where id =="code carte.."
 

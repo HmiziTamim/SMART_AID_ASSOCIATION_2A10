@@ -261,7 +261,7 @@ QPushButton:pressed
      <bool>true</bool>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -319,7 +319,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>nom </string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="ajouterp">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -335,7 +335,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>Ajouter</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_id">
+      <widget class="QLineEdit" name="le_idpr">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -356,7 +356,7 @@ border-radius: 7;
         <string/>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_nom">
+      <widget class="QLineEdit" name="le_nompr">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -396,7 +396,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>quantite</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="la_qte">
+      <widget class="QLineEdit" name="la_qtepr">
        <property name="geometry">
         <rect>
          <x>100</x>
@@ -468,7 +468,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>genre</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_poids">
+      <widget class="QLineEdit" name="le_poidspr">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -486,7 +486,7 @@ border-radius: 7;
 </string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="la_taille">
+      <widget class="QLineEdit" name="la_taillepr">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -504,7 +504,7 @@ border-radius: 7;
 </string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_genre">
+      <widget class="QLineEdit" name="le_genrepr">
        <property name="geometry">
         <rect>
          <x>340</x>
@@ -540,7 +540,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>date</string>
        </property>
       </widget>
-      <widget class="QDateEdit" name="la_date">
+      <widget class="QDateEdit" name="la_datepr">
        <property name="geometry">
         <rect>
          <x>220</x>
@@ -648,7 +648,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="tri_alphabetique_stock">
+     <widget class="QPushButton" name="tri_alphabetique_stockpr">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -661,7 +661,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <string>Tri par alphabétique</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="tri_desc_id">
+     <widget class="QPushButton" name="tri_desc_idpr">
       <property name="geometry">
        <rect>
         <x>240</x>
@@ -674,7 +674,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <string>Tri par ID Descendant</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="tri_asc_id">
+     <widget class="QPushButton" name="tri_asc_idpr">
       <property name="geometry">
        <rect>
         <x>390</x>
@@ -687,7 +687,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <string>Tri par ID Coroissant</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="recherche_Stock">
+     <widget class="QPushButton" name="recherche_Stockpr">
       <property name="geometry">
        <rect>
         <x>460</x>
@@ -700,7 +700,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <string>Rechercher </string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="input_rech">
+     <widget class="QLineEdit" name="input_rechpr">
       <property name="geometry">
        <rect>
         <x>218</x>
@@ -768,7 +768,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pb_supp">
+     <widget class="QPushButton" name="pb_supppr">
       <property name="geometry">
        <rect>
         <x>572</x>
@@ -784,7 +784,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
        <string>Supprimer</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="le_id_supp">
+     <widget class="QLineEdit" name="le_id_supppr">
       <property name="geometry">
        <rect>
         <x>690</x>
@@ -802,7 +802,7 @@ border-radius: 7;
 </string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Pdf">
+     <widget class="QPushButton" name="Pdfpr">
       <property name="geometry">
        <rect>
         <x>740</x>
@@ -815,7 +815,7 @@ border-radius: 7;
        <string>Pdf</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="stat">
+     <widget class="QPushButton" name="statpr">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -841,7 +841,7 @@ border-radius: 7;
        <string/>
       </property>
      </widget>
-     <widget class="QPushButton" name="qrCode">
+     <widget class="QPushButton" name="qrCodepr">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -854,7 +854,7 @@ border-radius: 7;
        <string>Qr Code</string>
       </property>
      </widget>
-     <widget class="QDateEdit" name="date">
+     <widget class="QDateEdit" name="datepr">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -864,7 +864,7 @@ border-radius: 7;
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="rech_nom">
+     <widget class="QPushButton" name="rech_nompr">
       <property name="geometry">
        <rect>
         <x>120</x>
@@ -879,20 +879,20 @@ border-radius: 7;
      </widget>
      <zorder>label_26</zorder>
      <zorder>tab_stock</zorder>
-     <zorder>tri_alphabetique_stock</zorder>
-     <zorder>tri_desc_id</zorder>
-     <zorder>tri_asc_id</zorder>
-     <zorder>recherche_Stock</zorder>
-     <zorder>input_rech</zorder>
+     <zorder>tri_alphabetique_stockpr</zorder>
+     <zorder>tri_desc_idpr</zorder>
+     <zorder>tri_asc_idpr</zorder>
+     <zorder>recherche_Stockpr</zorder>
+     <zorder>input_rechpr</zorder>
      <zorder>label_16</zorder>
-     <zorder>pb_supp</zorder>
-     <zorder>le_id_supp</zorder>
-     <zorder>Pdf</zorder>
-     <zorder>stat</zorder>
+     <zorder>pb_supppr</zorder>
+     <zorder>le_id_supppr</zorder>
+     <zorder>Pdfpr</zorder>
+     <zorder>statpr</zorder>
      <zorder>qr_code</zorder>
-     <zorder>qrCode</zorder>
-     <zorder>date</zorder>
-     <zorder>rech_nom</zorder>
+     <zorder>qrCodepr</zorder>
+     <zorder>datepr</zorder>
+     <zorder>rech_nompr</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">
@@ -951,7 +951,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>id</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="id_mod">
+      <widget class="QLineEdit" name="id_modpr">
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -987,7 +987,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>nom</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="nom_mod">
+      <widget class="QLineEdit" name="nom_modpr">
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1023,7 +1023,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>quantite</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="qte_mod">
+      <widget class="QLineEdit" name="qte_modpr">
        <property name="geometry">
         <rect>
          <x>112</x>
@@ -1059,7 +1059,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>poids</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="poids_mod">
+      <widget class="QLineEdit" name="poids_modpr">
        <property name="geometry">
         <rect>
          <x>362</x>
@@ -1095,7 +1095,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>taille</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="taille_mod">
+      <widget class="QLineEdit" name="taille_modpr">
        <property name="geometry">
         <rect>
          <x>362</x>
@@ -1131,7 +1131,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>genre</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="genre_mod">
+      <widget class="QLineEdit" name="genre_modpr">
        <property name="geometry">
         <rect>
          <x>362</x>
@@ -1167,7 +1167,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
         <string>date</string>
        </property>
       </widget>
-      <widget class="QDateEdit" name="date_mod">
+      <widget class="QDateEdit" name="date_modpr">
        <property name="geometry">
         <rect>
          <x>369</x>
@@ -1181,7 +1181,7 @@ font: 11pt &quot;MS Shell Dlg 2&quot;;</string>
 font: 8pt &quot;Arial&quot;;</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pb_modifier">
+      <widget class="QPushButton" name="pb_modifierpr">
        <property name="geometry">
         <rect>
          <x>260</x>
@@ -1235,7 +1235,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
      <attribute name="title">
       <string>historique d'ajoute</string>
      </attribute>
-     <widget class="QTableView" name="tab_his">
+     <widget class="QTableView" name="tab_hispr">
       <property name="geometry">
        <rect>
         <x>250</x>
@@ -1296,7 +1296,7 @@ background-color: rgba(117, 190, 218, 0.0);</string>
       </property>
      </widget>
      <zorder>label_27</zorder>
-     <zorder>tab_his</zorder>
+     <zorder>tab_hispr</zorder>
      <zorder>label_21</zorder>
     </widget>
     <widget class="QWidget" name="tab_7">

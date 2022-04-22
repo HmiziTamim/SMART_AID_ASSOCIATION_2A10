@@ -9,7 +9,6 @@
 #include <QRegExp>
 #include "connection.h"
 #include "historique.h"
-#include "histomod.h"
 #include <QFileDialog>
 #include <QPainter>
 #include <QPdfWriter>  //generate PDFs that can be used as a paint device
@@ -51,46 +50,46 @@ MainWindow::MainWindow(QWidget *parent) : //Constructeur de la classe mainwindow
     ui->setupUi(this);
 
 
-    ui->le_id->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
-    ui->la_qte->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
-    ui->le_poids->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
-    ui->la_taille->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
-    ui->le_nom->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{7}")));
-    ui->le_genre->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
+    ui->le_idpr->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
+    ui->la_qtepr->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
+    ui->le_poidspr->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
+    ui->la_taillepr->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
+    ui->le_nompr->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{7}")));
+    ui->le_genrepr->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
 
-    ui->le_id_supp->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
+    ui->le_id_supppr->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
 
-    ui->id_mod->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
-    ui->qte_mod->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
-    ui->poids_mod->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
-    ui->taille_mod->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
-    ui->nom_mod->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{7}")));
-    ui->genre_mod->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
-
-
+    ui->id_modpr->setValidator(new QRegExpValidator(QRegExp("[0-9]{8}")));
+    ui->qte_modpr->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
+    ui->poids_modpr->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
+    ui->taille_modpr->setValidator(new QRegExpValidator(QRegExp("[0-9]{5}")));
+    ui->nom_modpr->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{7}")));
+    ui->genre_modpr->setValidator(new QRegExpValidator(QRegExp("[a-z-A-Z]{6}")));
 
 
-    ui->le_id->setPlaceholderText("Entrez le id...");
-    ui->le_nom->setPlaceholderText("Entrez le nom...");
-    ui->le_genre->setPlaceholderText("Entrez le genre...");
-    ui->la_qte->setPlaceholderText("Entrez la quantite...");
-    ui->le_poids->setPlaceholderText("Entrez le poids...");
-    ui->la_taille->setPlaceholderText("Entrez la taille...");
 
-    ui->le_id_supp->setPlaceholderText("Entrez le id à supprimer...");
 
-    ui->id_mod->setPlaceholderText("Entrez le id...");
-    ui->nom_mod->setPlaceholderText("Entrez le nom...");
-    ui->genre_mod->setPlaceholderText("Entrez le genre...");
-    ui->qte_mod->setPlaceholderText("Entrez la quantite...");
-    ui->poids_mod->setPlaceholderText("Entrez le poids...");
-    ui->taille_mod->setPlaceholderText("Entrez la taille...");
+    ui->le_idpr->setPlaceholderText("Entrez le id...");
+    ui->le_nompr->setPlaceholderText("Entrez le nom...");
+    ui->le_genrepr->setPlaceholderText("Entrez le genre...");
+    ui->la_qtepr->setPlaceholderText("Entrez la quantite...");
+    ui->le_poidspr->setPlaceholderText("Entrez le poids...");
+    ui->la_taillepr->setPlaceholderText("Entrez la taille...");
+
+    ui->le_id_supppr->setPlaceholderText("Entrez le id à supprimer...");
+
+    ui->id_modpr->setPlaceholderText("Entrez le id...");
+    ui->nom_modpr->setPlaceholderText("Entrez le nom...");
+    ui->genre_modpr->setPlaceholderText("Entrez le genre...");
+    ui->qte_modpr->setPlaceholderText("Entrez la quantite...");
+    ui->poids_modpr->setPlaceholderText("Entrez le poids...");
+    ui->taille_modpr->setPlaceholderText("Entrez la taille...");
 
 
 
 
     ui->tab_stock->setModel(S.afficher());
-  ui->tab_his->setModel(H.afficherHistorique());
+  ui->tab_hispr->setModel(H.afficherHistorique());
 
 
     ui->Display->setText(QString::number(calcVal));
@@ -136,21 +135,21 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_ajouterp_clicked()
 {
 
 
 
-    QString id=ui->le_id->text();
-    QString nom=ui->le_nom->text();
-    QString genre=ui->le_genre->text();
-    int quantite=ui->la_qte->text().toInt();
-    int poids=ui->le_poids->text().toInt();
-    int taille=ui->la_taille->text().toInt();
-    QDate datep= ui->la_date->date();
+    QString id=ui->le_idpr->text();
+    QString nom=ui->le_nompr->text();
+    QString genre=ui->le_genrepr->text();
+    int quantite=ui->la_qtepr->text().toInt();
+    int poids=ui->le_poidspr->text().toInt();
+    int taille=ui->la_taillepr->text().toInt();
+    QDate datep= ui->la_datepr->date();
 
 
-    QString idh=ui->le_id->text();
+    QString idh=ui->le_idpr->text();
 
 
 
@@ -168,7 +167,7 @@ void MainWindow::on_pushButton_clicked()
         historique h( "ajout", idh);
 
                     h.ajouter_historique();
-                    ui->tab_his->setModel(H.afficherHistorique());
+                    ui->tab_hispr->setModel(H.afficherHistorique());
 
         QMessageBox::information(nullptr, QObject::tr("OK"),
                              QObject::tr("Ajout effectué\n"
@@ -180,30 +179,30 @@ void MainWindow::on_pushButton_clicked()
                                           "Click Cancel to exit."), QMessageBox::Cancel);
 }
 
-void MainWindow::on_tri_alphabetique_stock_clicked()
+void MainWindow::on_tri_alphabetique_stockpr_clicked()
 {
     ui->tab_stock->setModel(S.afficher_tri_alphabetique_Stock());
 
 }
 
-void MainWindow::on_tri_desc_id_clicked()
+void MainWindow::on_tri_desc_idpr_clicked()
 {
     ui->tab_stock->setModel(S.afficher_tri_descendant_Stock());
 
 }
 
-void MainWindow::on_tri_asc_id_clicked()
+void MainWindow::on_tri_asc_idpr_clicked()
 {
 ui->tab_stock->setModel(S.afficher_tri_identifiant_Stock());
 }
 
-void MainWindow::on_pb_supp_clicked()
+void MainWindow::on_pb_supppr_clicked()
 {
     QSqlQuery query;
 
-    S.setid(ui->le_id_supp->text());
+    S.setid(ui->le_id_supppr->text());
 
-    QString idh=ui->le_id_supp->text();
+    QString idh=ui->le_id_supppr->text();
 
 
     bool test=S.supprimer(S.getid());
@@ -228,7 +227,7 @@ void MainWindow::on_pb_supp_clicked()
 
         historique h("suppression",idh);
         h.ajouter_historique();
-        ui->tab_his->setModel(H.afficherHistorique());
+        ui->tab_hispr->setModel(H.afficherHistorique());
         }
         else
             QMessageBox::critical(nullptr,QObject::tr("NOT OK"),
@@ -237,19 +236,19 @@ void MainWindow::on_pb_supp_clicked()
 
 }
 
-void MainWindow::on_pb_modifier_clicked()
+void MainWindow::on_pb_modifierpr_clicked()
 {
-            S.setid(ui->id_mod->text());
-            S.setnom(ui->nom_mod->text());
-            S.setqte(ui->qte_mod->text().toInt());
-            S.setdate(ui->date_mod->date());
-            S.setgenre(ui->genre_mod->text());
-            S.setpoids(ui->poids_mod->text().toInt());
-            S.settaille(ui->taille_mod->text().toInt());
+            S.setid(ui->id_modpr->text());
+            S.setnom(ui->nom_modpr->text());
+            S.setqte(ui->qte_modpr->text().toInt());
+            S.setdate(ui->date_modpr->date());
+            S.setgenre(ui->genre_modpr->text());
+            S.setpoids(ui->poids_modpr->text().toInt());
+            S.settaille(ui->taille_modpr->text().toInt());
 
 
 
-            QString idh=ui->id_mod->text();
+            QString idh=ui->id_modpr->text();
 
 
 
@@ -260,19 +259,19 @@ void MainWindow::on_pb_modifier_clicked()
 
                 historique h( "modification", idh);
                 h.ajouter_historique();
-                ui->tab_his->setModel(H.afficherHistorique());
+                ui->tab_hispr->setModel(H.afficherHistorique());
 
                 ui->tab_stock->setModel(S.afficher());
 
                  QMessageBox::information(nullptr, QObject::tr("modification produit"),
                                           QObject::tr("modification avec succès.\n""Click Cancel to exit."), QMessageBox::Cancel);
-                ui->id_mod->clear();
-                ui->nom_mod->clear();
-                ui->qte_mod->clear();
-                ui->poids_mod->clear();
-                ui->taille_mod->clear();
-                ui->date_mod->clear();
-                ui->genre_mod->clear();
+                ui->id_modpr->clear();
+                ui->nom_modpr->clear();
+                ui->qte_modpr->clear();
+                ui->poids_modpr->clear();
+                ui->taille_modpr->clear();
+                ui->date_modpr->clear();
+                ui->genre_modpr->clear();
 
 
 
@@ -284,12 +283,12 @@ void MainWindow::on_pb_modifier_clicked()
                                          QObject::tr("modification échouée.\n""Click Cancel to exit."), QMessageBox::Cancel);
 }
 
-void MainWindow::on_recherche_Stock_clicked()
+void MainWindow::on_recherche_Stockpr_clicked()
 {
 
 
 
-    ui->tab_stock->setModel(S.recherche_date(ui->date->date()));
+    ui->tab_stock->setModel(S.recherche_date(ui->datepr->date()));
 
 
         /* QDate datep=ui->input_rech->text().date();
@@ -302,7 +301,7 @@ void MainWindow::on_recherche_Stock_clicked()
 
 }
 
-void MainWindow::on_Pdf_clicked()
+void MainWindow::on_Pdfpr_clicked()
 {
     QPdfWriter pdf("C:/Users/sarra/Desktop/Gestion_Stock/PDF/sarra.pdf");
     QPainter painter(&pdf);
@@ -364,7 +363,7 @@ void MainWindow::on_Pdf_clicked()
             }
 }
 
-void MainWindow::on_stat_clicked()
+void MainWindow::on_statpr_clicked()
 {
 
 
@@ -421,7 +420,7 @@ void MainWindow::on_stat_clicked()
 
 
 
-void MainWindow::on_qrCode_clicked()
+void MainWindow::on_qrCodepr_clicked()
 {
     int tabeq=ui->tab_stock->currentIndex().row(); //track selected item
                QVariant idd=ui->tab_stock->model()->data(ui->tab_stock->model()->index(tabeq,0));
@@ -607,9 +606,9 @@ void MainWindow::ChangeNumberSign(){
 
 
 
-void MainWindow::on_rech_nom_clicked()
+void MainWindow::on_rech_nompr_clicked()
 {
-    ui->tab_stock->setModel(S.recherche_nom(ui->input_rech->text()));
+    ui->tab_stock->setModel(S.recherche_nom(ui->input_rechpr->text()));
 
     // ui->tab_stock->setModel(S.recherche_date(ui->date->date()));
 

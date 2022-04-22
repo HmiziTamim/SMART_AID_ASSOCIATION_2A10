@@ -47,12 +47,12 @@ void MainWindow::on_pushButton_clicked()
 
 
     QMessageBox::information(nullptr, QObject::tr("OK"),
-                         QObject::tr("personne détectée et fonctionnement de  servo\n"
+                         QObject::tr("fonctionnement de  servo\n"
                                      "Click Cancel to exit."), QMessageBox::Cancel);}
     else
        { qDebug() << "couldn't write ro serial:";
         QMessageBox::critical(nullptr,QObject::tr("NOT OK"),
-                              QObject::tr(" personne non détectée\n"
+                              QObject::tr("non fonctionnement de  servo\n"
                                           "Click Cancel to exit."), QMessageBox::Cancel);}
 
 }

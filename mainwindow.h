@@ -4,8 +4,7 @@
 #include "stock.h"
 
 #include "historique.h"
-#include "histosupp.h"
-#include "histomod.h"
+
 #include "qrcode.h"
 namespace Ui {
 class MainWindow;
@@ -20,32 +19,32 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
+    void on_ajouterp_clicked();
 
-    void on_tri_alphabetique_stock_clicked();
+    void on_tri_alphabetique_stockpr_clicked();
 
-    void on_tri_desc_id_clicked();
+    void on_tri_desc_idpr_clicked();
 
-    void on_tri_asc_id_clicked();
+    void on_tri_asc_idpr_clicked();
 
-    void on_pb_supp_clicked();
+    void on_pb_supppr_clicked();
 
-    void on_pb_modifier_clicked();
+    void on_pb_modifierpr_clicked();
 
-    void on_recherche_Stock_clicked();
+    void on_recherche_Stockpr_clicked();
 
-    void on_Pdf_clicked();
+    void on_Pdfpr_clicked();
 
-    void on_stat_clicked();
+    void on_statpr_clicked();
 
-    void on_qrCode_clicked();
+    void on_qrCodepr_clicked();
 
     void NumPressed();
     void MathButtonPressed();
     void EqualButtonPressed();
     void ChangeNumberSign();
 
-    void on_rech_nom_clicked();
+    void on_rech_nompr_clicked();
 
 private:
     Ui::MainWindow *ui;

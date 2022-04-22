@@ -19,8 +19,6 @@ void loop() {
 
 
 
-
-
  while (Serial.available())
   {
     data =Serial.read();
@@ -31,9 +29,9 @@ void loop() {
       case 'v':
       verif();
       break;
-      case 'n':
+     /* case 'n':
       off();
-      break;
+      break;*/
       
     }
 
@@ -46,6 +44,7 @@ void verif()
 
 {
 distance = calculateDistance();
+Serial.println(distance);
 
   if ( distance <48){
 myServo.attach(6);
@@ -61,16 +60,16 @@ delay(500);
 myServo.write(0);
 delay(500);
 }}
-void off()
+/*void off()
 
 {
 distance = calculateDistance();
+Serial.println(distance);
 
   if ( distance >=48){
 myServo.detach();
-}
-Serial.println(distance);
-}
+
+}}*/
 int calculateDistance(){
 
 digitalWrite(trigPin, LOW);
