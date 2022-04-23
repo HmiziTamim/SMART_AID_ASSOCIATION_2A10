@@ -51,7 +51,7 @@ QSqlQueryModel* client::afficher(QString idt)
 QSqlQueryModel * model=new QSqlQueryModel();
 
 
-model->setQuery("SELECT * FROM client WHERE id LIKE '%"+idt+"%'");
+model->setQuery("SELECT * FROM client WHERE id LIKE '"+idt+"'");
 
 
 model->setHeaderData(0, Qt::Horizontal, QObject::tr("id client"));

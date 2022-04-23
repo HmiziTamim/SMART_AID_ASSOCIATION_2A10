@@ -1,24 +1,27 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QString>
 #include <QDebug>
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlError>
-
-
-using namespace std;
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    arduinoc = new arduino;
-    arduinoc->openConnection();
-    connect(arduinoc,&arduino::gotNewData,this,&MainWindow::updateGUI);
 
-
-
+    int ret=A.connect_arduino(); // lancer la connexion à arduino
+    switch(ret){
+    case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+       break;
+    case(-1):qDebug() << "arduino is not available";
+    }
+     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+     //le slot update_label suite à la reception du signal readyRead (reception des données).
 }
 
 MainWindow::~MainWindow()
@@ -26,70 +29,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::updateGUI(QByteArray data)
+void MainWindow::update_label()
 {
-    ui->lcdbyte->display(ui->lcdbyte->value() + data.size());
+    data=A.read_from_arduino();
+QString idt=ui->idt->text();
 
-}
+    if(data=="1")
 
-
-
-
-
-void MainWindow::on_on_clicked()
-{
-
-  if (arduinoc->isWritable())
-  arduinoc->write("o");
-
-
-  else
-      qDebug() << "couldn't write ro serial:";
+    ui->tabaff->setModel(C.afficher(idt));
+    // si les données reçues de arduino via la liaison série sont égales à 1
+    // alors afficher ON
 
 
 }
 
-void MainWindow::on_off_clicked()
+void MainWindow::on_verifier_clicked()   // implémentation du slot bouton on
 {
-    if (arduinoc->isWritable())
-        arduinoc->write("n");
-
-
-    else
-        qDebug() << "couldn't write ro serial:";
-
-
-
-
+     A.write_to_arduino("1"); //envoyer 1 à arduino
 }
-
-void MainWindow::on_verifier_clicked()
-{
-
- QString idt=ui->idt->text();
- QString id=ui->id->text();
-
-
-
- if (arduinoc->isWritable())
- {   arduinoc->write("v");
-     if (idt == "2A 2E C0 48")
-
-     {
-
-ui->tabaff->setModel(C.afficher(idt));
-}
-
-
-}}
-
-
-
-
-// select * base where id =="code carte.."
-
-
-
 void MainWindow::on_pushButton_clicked()
 {
     QString id=ui->id->text();

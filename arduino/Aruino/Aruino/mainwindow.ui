@@ -104,16 +104,6 @@
      <string>Fermer la porte:</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdbyte">
-    <property name="geometry">
-     <rect>
-      <x>500</x>
-      <y>0</y>
-      <width>64</width>
-      <height>23</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
@@ -261,14 +251,27 @@ border-radius: 7;
    <widget class="QLineEdit" name="idt">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>30</y>
-      <width>113</width>
-      <height>22</height>
+      <x>470</x>
+      <y>41</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>275</x>
+      <y>45</y>
+      <width>191</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>id client entrant </string>
     </property>
    </widget>
   </widget>

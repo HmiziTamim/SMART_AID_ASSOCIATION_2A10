@@ -14,7 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QLCDNumber>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -27,8 +27,8 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QLCDNumber *lcdbyte;
     QPushButton *pushButton;
+    QLabel *label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -36,19 +36,21 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(492, 368);
+        MainWindow->setStyleSheet(QStringLiteral("background-color: rgb(93, 180, 255);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QStringLiteral("centralwidget"));
-        lcdbyte = new QLCDNumber(centralwidget);
-        lcdbyte->setObjectName(QStringLiteral("lcdbyte"));
-        lcdbyte->setGeometry(QRect(530, 110, 64, 23));
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(120, 250, 91, 61));
+        pushButton->setGeometry(QRect(130, 100, 221, 111));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(130, 240, 221, 31));
+        label->setStyleSheet(QStringLiteral("color: rgb(170, 0, 127);"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QStringLiteral("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 26));
+        menubar->setGeometry(QRect(0, 0, 492, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QStringLiteral("statusbar"));
@@ -63,6 +65,7 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "V\303\251rif", Q_NULLPTR));
+        label->setText(QString());
     } // retranslateUi
 
 };
