@@ -1,0 +1,19 @@
+ ui->quickWidget->setSource(QUrl(QStringLiteral("qrc:/map.qml")));
+commenter map mehech bich te5dem
+
+
+
+  quickWidget = new QQuickWidget(tab_14);
+        quickWidget->setObjectName(QString::fromUtf8("quickWidget"));
+        quickWidget->setGeometry(QRect(180, 70, 401, 251));
+        quickWidget->setMinimumSize(QSize(219, 251));
+        quickWidget->setMaximumSize(QSize(401, 251));
+        quickWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+//kif kif
+
+
+Makefile.Debug
+#	C:\Qt\5.15.2\mingw81_32\bin\rcc.exe -name sound ..\Final0\sound.qrc -o debug\qrc_sound.cpp
+#	C:\Qt\5.15.2\mingw81_32\bin\rcc.exe -name sound ..\Final0\sound.qrc -o debug\qrc_sound.cpp
+        #C:\Qt\5.15.2\mingw81_32\bin\rcc.exe -name images ..\Final0\images.qrc -o debug\qrc_images.cpp
+

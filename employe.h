@@ -8,11 +8,11 @@ class Employe
 {
 public:
     Employe();
-    Employe(int,QString,QString,QString);
-    Employe(int,QString,QString,QString,QString,QString,QDate,QString,int,QString);
+    Employe(QString,QString,QString,QString);
+    Employe(QString,QString,QString,QString,QString,QString,QDate,QString,int,QString);
     QString getnom();
     QString getprenom();
-    int getcin();
+    QString getcin();
     QString getnat();
     QString getetat();
     QString getemail();
@@ -20,7 +20,7 @@ public:
     QString getadresse();
     QString getsexe();
     int gettel();
-    void setcin(int);
+    void setcin(QString);
     void setprenom(QString);
     void setnom(QString);
     void setnat(QString);
@@ -32,8 +32,8 @@ public:
     void settel(int);
     bool ajouter();
     QSqlQueryModel *afficher();
-    bool supprimer(int);
-    bool modifier(int);
+    bool supprimer(QString);
+    bool modifier(QString);
        QSqlQueryModel * triNom();
        QSqlQueryModel * tricin();
        QSqlQueryModel * triprenom();
@@ -43,8 +43,11 @@ public:
        QSqlQueryModel * triadresse();
        QSqlQueryModel * triemail();
        void clearTable(QTableView *table);
+
+        QSqlQueryModel* afficher(QString);
 private:
-    int cin,tel;
+    QString cin;
+    int tel;
     QString nom,adresse,sexe;
     QString prenom,nat,etat,email;
     QDate naiss;
